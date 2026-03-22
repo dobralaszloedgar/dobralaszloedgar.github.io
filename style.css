@@ -4,8 +4,6 @@
     --secondary: #2D6A4F;
     --accent: #52B788;
     --accent-light: #74C69D;
-    --brown: #8B7355;
-    --brown-light: #A0826D;
     --text: #2D3436;
     --bg: #FEFFFE;
     --bg-light: #F1F8F4;
@@ -270,7 +268,7 @@ nav {
 
 .timeline-item .date {
     font-size: 0.9rem;
-    color: var(--brown);
+    color: var(--secondary);
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
@@ -292,7 +290,7 @@ nav {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(139, 115, 85, 0.12);
+    box-shadow: 0 4px 6px rgba(27, 67, 50, 0.08);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -306,7 +304,7 @@ nav {
 
 .card:hover {
     transform: translateY(-10px) rotate(1deg);
-    box-shadow: 0 12px 24px rgba(139, 115, 85, 0.25);
+    box-shadow: 0 12px 24px rgba(27, 67, 50, 0.2);
     border-color: var(--accent-light);
 }
 
@@ -337,7 +335,7 @@ nav {
 }
 
 .poster-btn {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+    background: var(--accent);
     color: white;
     border: none;
     padding: 0.6rem 1rem;
@@ -349,9 +347,9 @@ nav {
 }
 
 .poster-btn:hover {
-    background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 100%);
+    background: var(--secondary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(139, 115, 85, 0.4);
+    box-shadow: 0 4px 8px rgba(82, 183, 136, 0.3);
 }
 
 .poster-btn:active {
@@ -409,7 +407,7 @@ nav {
 footer {
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--brown) 100%);
+    background: var(--primary);
     color: white;
 }
 
