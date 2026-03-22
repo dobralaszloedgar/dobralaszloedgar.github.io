@@ -410,6 +410,11 @@ nav {
     border: none;
 }
 
+.contact-info {
+    text-align: center;
+    margin-top: 2rem;
+}
+
 footer {
     text-align: center;
     padding: 2rem;
