@@ -105,11 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define coordinates for each section (normalized 0-1 coordinates)
     // Reduced zoom levels for better context visibility
     const sectionCoords = {
-        'introduction': { x: 0.13, y: 0.32, zoom: 0.6 },      // Left column - Introduction & BBCPs
-        'methods': { x: 0.50, y: 0.32, zoom: 0.7 },           // Middle column - Methods workflow
-        'automation': { x: 0.13, y: 0.72, zoom: 0.6 },        // Left bottom - OT-2 Automation
-        'results': { x: 0.87, y: 0.32, zoom: 0.7 },           // Right column - GPC Results
-        'future': { x: 0.62, y: 0.86, zoom: 0.5 }             // Bottom center - Future Work
+        'introduction': { x: 0.13, y: 0.32, zoom: 0.45 },      // Left column - Introduction & BBCPs
+        'methods': { x: 0.50, y: 0.32, zoom: 0.5 },           // Middle column - Methods workflow
+        'automation': { x: 0.13, y: 0.72, zoom: 0.35 },        // Left bottom - OT-2 Automation
+        'results': { x: 0.87, y: 0.32, zoom: 0.5 },           // Right column - GPC Results
+        'future': { x: 0.62, y: 0.86, zoom: 0.3 }             // Bottom center - Future Work
     };
 
     posterButtons.forEach(button => {
