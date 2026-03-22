@@ -33,6 +33,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(27, 67, 50, 0.3);
 }
 
 .logo {
@@ -51,6 +52,22 @@ nav {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-links a:hover {
@@ -70,18 +87,81 @@ nav {
 }
 
 .hero {
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     background: linear-gradient(135deg, #D8F3DC 0%, #B7E4C7 50%, #95D5B2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231B4332" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center / cover no-repeat;
+    opacity: 0.5;
+    animation: wave 15s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    z-index: 1;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-image {
+    flex: 0 0 300px;
+}
+
+.profile-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(27, 67, 50, 0.3);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
 }
 
 .hero h1 {
     font-size: 4rem;
     color: var(--primary);
     margin-bottom: 1rem;
+}
+
+.glitch {
+    position: relative;
+    animation: glitch-text 5s infinite;
+}
+
+@keyframes glitch-text {
+    0%, 90%, 100% { transform: translate(0); }
+    91% { transform: translate(-2px, 2px); }
+    92% { transform: translate(2px, -2px); }
+    93% { transform: translate(-2px, 2px); }
+    94% { transform: translate(2px, -2px); }
 }
 
 .hero p {
@@ -99,12 +179,33 @@ nav {
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: transform 0.2s ease, background 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn:hover {
     background: #40916C;
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(82, 183, 136, 0.4);
 }
 
 .btn-outline {
@@ -121,13 +222,18 @@ nav {
 /* Timeline */
 .timeline {
     margin-top: 2rem;
-    border-left: 3px solid var(--primary);
+    border-left: 3px solid var(--accent);
     padding-left: 1.5rem;
 }
 
 .timeline-item {
     margin-bottom: 2rem;
     position: relative;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(10px);
 }
 
 .timeline-item::before {
@@ -139,6 +245,13 @@ nav {
     height: 15px;
     background: var(--accent);
     border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-light);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
 .timeline-item h3 {
@@ -147,7 +260,7 @@ nav {
 
 .timeline-item .date {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--secondary);
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
@@ -169,10 +282,11 @@ nav {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(27, 67, 50, 0.08);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    border: 2px solid transparent;
 }
 
 .card h3 {
@@ -181,8 +295,9 @@ nav {
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(27, 67, 50, 0.15);
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 12px 24px rgba(27, 67, 50, 0.2);
+    border-color: var(--accent-light);
 }
 
 .project-link {
@@ -192,12 +307,32 @@ nav {
     color: var(--accent);
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--secondary);
 }
 
 .resume-links {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
+}
+
+/* Resume Viewer */
+.resume-viewer {
+    margin-top: 2rem;
+    border: 2px solid var(--accent-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
+}
+
+.resume-viewer iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
 }
 
 footer {
@@ -219,21 +354,6 @@ footer {
     transform: translateY(0);
 }
 
-/* Resume Viewer */
-.resume-viewer {
-    margin-top: 2rem;
-    border: 2px solid var(--accent-light);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
-}
-
-.resume-viewer iframe {
-    width: 100%;
-    height: 800px;
-    border: none;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
@@ -242,6 +362,17 @@ footer {
     }
     .hero h1 {
         font-size: 2.5rem;
+    }
+    .hero-content {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+    .hero-image {
+        flex: 0 0 200px;
+    }
+    .profile-photo {
+        width: 200px;
+        height: 200px;
     }
     .resume-links {
         flex-direction: column;
