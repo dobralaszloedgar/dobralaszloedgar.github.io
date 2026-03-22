@@ -4,6 +4,8 @@
     --secondary: #2D6A4F;
     --accent: #52B788;
     --accent-light: #74C69D;
+    --brown: #8B7355;
+    --brown-light: #A0826D;
     --text: #2D3436;
     --bg: #FEFFFE;
     --bg-light: #F1F8F4;
@@ -156,17 +158,19 @@ nav {
     margin-bottom: 1rem;
 }
 
-.glitch {
-    position: relative;
-    animation: glitch-text 5s infinite;
+.swoosh-in {
+    animation: swooshFromLeft 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes glitch-text {
-    0%, 90%, 100% { transform: translate(0); }
-    91% { transform: translate(-2px, 2px); }
-    92% { transform: translate(2px, -2px); }
-    93% { transform: translate(-2px, 2px); }
-    94% { transform: translate(2px, -2px); }
+@keyframes swooshFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .hero p {
@@ -266,7 +270,7 @@ nav {
 
 .timeline-item .date {
     font-size: 0.9rem;
-    color: var(--secondary);
+    color: var(--brown);
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
@@ -288,7 +292,7 @@ nav {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(27, 67, 50, 0.08);
+    box-shadow: 0 4px 6px rgba(139, 115, 85, 0.12);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -302,7 +306,7 @@ nav {
 
 .card:hover {
     transform: translateY(-10px) rotate(1deg);
-    box-shadow: 0 12px 24px rgba(27, 67, 50, 0.2);
+    box-shadow: 0 12px 24px rgba(139, 115, 85, 0.25);
     border-color: var(--accent-light);
 }
 
@@ -333,7 +337,7 @@ nav {
 }
 
 .poster-btn {
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
     color: white;
     border: none;
     padding: 0.6rem 1rem;
@@ -345,9 +349,9 @@ nav {
 }
 
 .poster-btn:hover {
-    background: var(--secondary);
+    background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(82, 183, 136, 0.3);
+    box-shadow: 0 4px 8px rgba(139, 115, 85, 0.4);
 }
 
 .poster-btn:active {
@@ -405,7 +409,7 @@ nav {
 footer {
     text-align: center;
     padding: 2rem;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--brown) 100%);
     color: white;
 }
 
