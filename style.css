@@ -124,6 +124,8 @@ nav {
 
 .hero-text {
     flex: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-image {
@@ -182,6 +184,7 @@ nav {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    z-index: 10;
 }
 
 .btn::before {
@@ -312,6 +315,32 @@ nav {
 
 .project-link:hover {
     color: var(--secondary);
+}
+
+/* Poster Preview */
+.poster-preview {
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--accent-light);
+    transition: all 0.3s ease;
+}
+
+.poster-preview:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(82, 183, 136, 0.3);
+}
+
+.poster-thumbnail {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.poster-preview:hover .poster-thumbnail {
+    transform: scale(1.05);
 }
 
 .resume-links {
