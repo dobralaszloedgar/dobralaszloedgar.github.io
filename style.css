@@ -104,16 +104,38 @@ nav {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231B4332" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center / cover no-repeat;
-    opacity: 0.5;
-    animation: wave 15s ease-in-out infinite;
+    width: 200%;
+    height: 200%;
+    background-color: transparent;
+    box-shadow: 
+        10vw 15vh 2px 0px #ffffff22,
+        25vw 30vh 3px 1px #ffffff33,
+        40vw 50vh 2px 2px #ffffff11,
+        55vw 70vh 3px 1px #ffffff44,
+        70vw 85vh 2px 0px #ffffff22,
+        85vw 5vh 3px 1px #ffffff33,
+        5vw 90vh 2px 2px #ffffff11,
+        95vw 40vh 3px 1px #ffffff44,
+        /* Add more particles for a denser effect */
+        15vw 80vh 2px 0px #ffffff22,
+        30vw 10vh 3px 1px #ffffff33,
+        45vw 60vh 2px 2px #ffffff11,
+        60vw 25vh 3px 1px #ffffff44,
+        75vw 50vh 2px 0px #ffffff22,
+        90vw 75vh 3px 1px #ffffff33;
+    animation: move-particles 60s linear infinite;
+    z-index: 0;
+    top: -50%;
+    left: -50%;
 }
 
-@keyframes wave {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+@keyframes move-particles {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(25%, 25%);
+    }
 }
 
 .hero-content {
@@ -251,15 +273,12 @@ nav {
 }
 
 .timeline-item::before {
-    content: '';
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D6A4F' width='24px' height='24px'%3e%3cpath d='M6 3v2H5v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5h-1V3H6zm10 15H8V6h8v12z'/%3e%3c/svg%3e");
     position: absolute;
-    left: -1.95rem;
-    top: 0.3rem;
-    width: 15px;
-    height: 15px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px var(--bg-light);
+    left: -2.2rem;
+    top: 0.1rem;
+    width: 24px;
+    height: 24px;
     animation: pulse 2s ease-in-out infinite;
 }
 
@@ -310,7 +329,7 @@ nav {
 
 .card:hover {
     transform: translateY(-10px) rotate(1deg);
-    box-shadow: 0 12px 24px rgba(8, 28, 21, 0.25);
+    box-shadow: 0 12px 24px rgba(8, 28, 21, 0.25), 0 0 20px var(--accent-light);
     border-color: var(--accent-light);
 }
 
