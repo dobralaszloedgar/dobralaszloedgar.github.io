@@ -103,13 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const posterButtons = document.querySelectorAll('.poster-btn');
 
     // Define coordinates for each section (normalized 0-1 coordinates)
-    // Based on actual poster layout analysis
+    // Reduced zoom levels for better context visibility
     const sectionCoords = {
-        'introduction': { x: 0.13, y: 0.32, zoom: 2.4 },      // Left column - Introduction & BBCPs
-        'methods': { x: 0.50, y: 0.32, zoom: 2.4 },           // Middle column - Methods workflow
-        'automation': { x: 0.13, y: 0.72, zoom: 2.7 },        // Left bottom - OT-2 Automation
-        'results': { x: 0.87, y: 0.32, zoom: 2.4 },           // Right column - GPC Results
-        'future': { x: 0.62, y: 0.86, zoom: 2.7 }             // Bottom center - Future Work
+        'introduction': { x: 0.13, y: 0.32, zoom: 1.5 },      // Left column - Introduction & BBCPs
+        'methods': { x: 0.50, y: 0.32, zoom: 1.5 },           // Middle column - Methods workflow
+        'automation': { x: 0.13, y: 0.72, zoom: 1.6 },        // Left bottom - OT-2 Automation
+        'results': { x: 0.87, y: 0.32, zoom: 1.5 },           // Right column - GPC Results
+        'future': { x: 0.62, y: 0.86, zoom: 1.6 }             // Bottom center - Future Work
     };
 
     posterButtons.forEach(button => {
