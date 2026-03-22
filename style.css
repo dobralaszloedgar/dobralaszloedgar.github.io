@@ -94,7 +94,8 @@ nav {
     align-items: center;
     background: linear-gradient(135deg, #D8F3DC 0%, #B7E4C7 50%, #95D5B2 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    padding: 2rem 5%;
 }
 
 .hero::before {
@@ -119,7 +120,9 @@ nav {
     align-items: center;
     gap: 4rem;
     max-width: 1200px;
+    width: 100%;
     z-index: 1;
+    position: relative;
 }
 
 .hero-text {
@@ -317,6 +320,40 @@ nav {
     color: var(--secondary);
 }
 
+/* Poster Card & Interactive Sections */
+.poster-card {
+    background: linear-gradient(135deg, #F1F8F4 0%, #D8F3DC 100%);
+}
+
+.poster-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.poster-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.poster-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(82, 183, 136, 0.3);
+}
+
+.poster-btn:active {
+    transform: translateY(0);
+}
+
 /* Poster Preview */
 .poster-preview {
     margin-top: 1rem;
@@ -325,6 +362,7 @@ nav {
     overflow: hidden;
     border: 2px solid var(--accent-light);
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .poster-preview:hover {
@@ -340,7 +378,7 @@ nav {
 }
 
 .poster-preview:hover .poster-thumbnail {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .resume-links {

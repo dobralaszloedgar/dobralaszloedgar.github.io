@@ -29,11 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize poster viewer with zoom and pan capabilities
     const posterGallery = document.getElementById('poster-gallery');
+    let viewer = null;
+
     if (posterGallery) {
-        const viewer = new Viewer(posterGallery, {
+        viewer = new Viewer(posterGallery, {
             inline: false,
             viewed() {
-                // Auto zoom to fit on first view
                 viewer.zoomTo(1);
             },
             toolbar: {
@@ -61,7 +62,63 @@ document.addEventListener('DOMContentLoaded', () => {
             keyboard: true,
             zoomRatio: 0.1,
             minZoomRatio: 0.1,
-            maxZoomRatio: 4,
+            maxZoomRatio: 5,
         });
     }
+
+    // Interactive poster section zoom
+    const posterButtons = document.querySelectorAll('.poster-btn');
+
+    // Define coordinates for each section (as percentages of image dimensions)
+    const sectionCoords = {
+        'introduction': { x: 0.13, y: 0.35, zoom: 2.5 },      // Left column - Introduction
+        'methods': { x: 0.5, y: 0.35, zoom: 2.5 },           // Middle column - Methods
+        'automation': { x: 0.13, y: 0.72, zoom: 2.8 },       // Left bottom - OT-2 Automation
+        'results': { x: 0.87, y: 0.40, zoom: 2.5 },          // Right column - Results
+        'future': { x: 0.63, y: 0.88, zoom: 2.8 }            // Bottom middle - Future Work
+    };
+
+    posterButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = button.getAttribute('data-section');
+            const coords = sectionCoords[section];
+
+            if (viewer && coords) {
+                // Show the viewer
+                viewer.show();
+
+                // Wait for viewer to be ready, then zoom to section
+                setTimeout(() => {
+                    const image = viewer.image;
+                    const container = viewer.viewer;
+
+                    if (image && container) {
+                        // Calculate position to center the section
+                        const imageWidth = image.naturalWidth;
+                        const imageHeight = image.naturalHeight;
+
+                        // Zoom to the specified level
+                        viewer.zoomTo(coords.zoom);
+
+                        // Move to center the section
+                        setTimeout(() => {
+                            const viewerWidth = container.offsetWidth;
+                            const viewerHeight = container.offsetHeight;
+                            const scaledWidth = imageWidth * coords.zoom;
+                            const scaledHeight = imageHeight * coords.zoom;
+
+                            // Calculate offset to center the target coordinates
+                            const targetX = coords.x * scaledWidth;
+                            const targetY = coords.y * scaledHeight;
+                            const offsetX = (viewerWidth / 2) - targetX;
+                            const offsetY = (viewerHeight / 2) - targetY;
+
+                            viewer.moveTo(offsetX, offsetY);
+                        }, 300);
+                    }
+                }, 100);
+            }
+        });
+    });
 });
