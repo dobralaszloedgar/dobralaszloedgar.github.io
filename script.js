@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const observerElements = document.querySelectorAll('.animate-on-scroll');
+    const observerElements = document.querySelectorAll('.animate-on-scroll, .animate-photo');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

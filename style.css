@@ -5,7 +5,7 @@
     --accent: #2D6A4F;
     --accent-light: #40916C;
     --text: #2D3436;
-    --bg: #FEFFFE;
+    --bg: #F5F5F5; /* whitesmoke */
     --bg-light: #D8F3DC;
     --dark-green: #081C15;
 }
@@ -18,6 +18,7 @@
 }
 
 body {
+    background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
 }
@@ -144,13 +145,15 @@ nav {
     box-shadow: 0 10px 30px rgba(27, 67, 50, 0.3);
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+.animate-photo {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-.hero.visible .profile-photo {
-    animation: float 3s ease-in-out;
+.animate-photo.visible {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .hero h1 {
