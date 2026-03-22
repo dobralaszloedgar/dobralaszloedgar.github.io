@@ -1,10 +1,13 @@
 /* Base Styles & Typography */
 :root {
-    --primary: #13294B; 
-    --accent: #E84A27;  
-    --text: #333;
-    --bg: #fff;
-    --bg-light: #f4f4f9;
+    --primary: #1B4332;
+    --secondary: #2D6A4F;
+    --accent: #52B788;
+    --accent-light: #74C69D;
+    --text: #2D3436;
+    --bg: #FEFFFE;
+    --bg-light: #F1F8F4;
+    --dark-green: #081C15;
 }
 
 * {
@@ -72,7 +75,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    background: linear-gradient(135deg, #D8F3DC 0%, #B7E4C7 50%, #95D5B2 100%);
 }
 
 .hero h1 {
@@ -100,7 +103,7 @@ nav {
 }
 
 .btn:hover {
-    background: #c73e1f;
+    background: #40916C;
     transform: translateY(-2px);
 }
 
@@ -179,6 +182,7 @@ nav {
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(27, 67, 50, 0.15);
 }
 
 .project-link {
@@ -215,6 +219,21 @@ footer {
     transform: translateY(0);
 }
 
+/* Resume Viewer */
+.resume-viewer {
+    margin-top: 2rem;
+    border: 2px solid var(--accent-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
+}
+
+.resume-viewer iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
@@ -226,5 +245,8 @@ footer {
     }
     .resume-links {
         flex-direction: column;
+    }
+    .resume-viewer iframe {
+        height: 600px;
     }
 }
