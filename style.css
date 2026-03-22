@@ -144,7 +144,7 @@ nav {
     box-shadow: 0 10px 30px rgba(27, 67, 50, 0.3);
     opacity: 0;
     transform: scale(0.8);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
 }
 
 .hero.visible .profile-photo {
