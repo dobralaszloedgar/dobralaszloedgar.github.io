@@ -161,7 +161,7 @@
         const ctx = canvas.getContext('2d');
 
         let width, height;
-        const pipeHeight = 300; 
+        const pipeHeight = 150; 
         let pipeTop, pipeBottom, pipeCenter;
 
         function resize() {
@@ -175,10 +175,10 @@
         window.addEventListener('resize', resize);
         resize();
 
-        const particleCount = 10000; 
+        const particleCount = 2000; 
         const particles = [];
         const baseSpeed = 4;
-        const particleRadius = 4;
+        const particleRadius = 8;
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -238,7 +238,7 @@
                         if (pDist === 0) pDist = 0.1;
                         
                         let force = 0;
-                        const repulsionDistance = particleRadius * 2; // 8
+                        const repulsionDistance = particleRadius * 2; // 16
 
                         if (pDist < repulsionDistance) {
                             // Strong repulsion if too close
