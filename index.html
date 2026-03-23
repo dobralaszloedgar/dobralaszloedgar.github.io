@@ -175,10 +175,10 @@
         window.addEventListener('resize', resize);
         resize();
 
-        const particleCount = 250; 
+        const particleCount = 750; 
         const particles = [];
         const baseSpeed = 4;
-        const particleRadius = 16;
+        const particleRadius = 8;
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -236,10 +236,10 @@
                         let pDist = Math.sqrt(pDistSq);
                         if (pDist === 0) pDist = 0.1;
                         
-                        let force = (70 - pDist) * 0.0004; 
+                        let force = (35 - pDist) * 0.001;
                         
-                        if (pDist < particleRadius * 1.5) {
-                            force -= 0.015; 
+                        if (pDist < particleRadius * 2) {
+                            force -= 0.02; 
                         }
 
                         p.vx += pDx * force;
