@@ -36,6 +36,29 @@
         </div>
     </header>
 
+    <section id="flow-simulation" class="section animate-on-scroll">
+        <div id="ui">
+            <h2>2D Liquid Flow</h2>
+            <p>Hover to break the stream. Watch surface tension pull it back.</p>
+        </div>
+        <svg style="position: absolute; width: 0; height: 0; pointer-events: none;">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="
+                        1 0 0 0 0  
+                        0 1 0 0 0  
+                        0 0 1 0 0  
+                        0 0 0 18 -7" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div id="canvas-container">
+            <canvas id="flowCanvas"></canvas>
+        </div>
+    </section>
+
     <section id="about" class="section animate-on-scroll">
         <h2>About Me</h2>
         <p>I am a chemical engineering student (GPA: 3.97) passionate about solving complex problems in material science, process control, and reaction engineering. My academic focus bridges the gap between fundamental chemistry and practical applications in semiconductors and precision polymers. I enjoy leveraging computational tools (Python, MATLAB, JavaScript) and analytical chemistry techniques (HPLC, GC, GPC, NMR) to model systems, visualize data, and automate research processes.</p>
@@ -133,5 +156,133 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
     <script src="script.js?v=4"></script>
+    <script>
+        const canvas = document.getElementById('flowCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        const pipeHeight = 300; 
+        let pipeTop, pipeBottom, pipeCenter;
+
+        function resize() {
+            const container = document.getElementById('canvas-container');
+            width = canvas.width = container.offsetWidth;
+            height = canvas.height = container.offsetHeight;
+            pipeCenter = height / 2;
+            pipeTop = pipeCenter - (pipeHeight / 2);
+            pipeBottom = pipeCenter + (pipeHeight / 2);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const particleCount = 250; 
+        const particles = [];
+        const baseSpeed = 4;
+        const particleRadius = 16;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: pipeTop + Math.random() * pipeHeight,
+                vx: baseSpeed,
+                vy: 0
+            });
+        }
+
+        const mouse = { x: -1000, y: -1000, influenceRadius: 130 };
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        canvas.addEventListener('mouseout', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            ctx.strokeStyle = 'rgba(27, 67, 50, 0.5)';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(0, pipeTop);
+            ctx.lineTo(width, pipeTop);
+            ctx.moveTo(0, pipeBottom);
+            ctx.lineTo(width, pipeBottom);
+            ctx.stroke();
+
+            for (let i = 0; i < particleCount; i++) {
+                let p = particles[i];
+
+                let dx = p.x - mouse.x;
+                let dy = p.y - mouse.y;
+                let distSq = dx * dx + dy * dy;
+
+                if (distSq < mouse.influenceRadius * mouse.influenceRadius && distSq > 0) {
+                    let dist = Math.sqrt(distSq);
+                    let force = Math.pow((mouse.influenceRadius - dist) / mouse.influenceRadius, 2);
+                    p.vx += (dx / dist) * force * 2.5;
+                    p.vy += (dy / dist) * force * 2.5;
+                }
+
+                for (let j = i + 1; j < particleCount; j++) {
+                    let p2 = particles[j];
+                    let pDx = p2.x - p.x;
+                    let pDy = p2.y - p.y;
+                    let pDistSq = pDx * pDx + pDy * pDy;
+
+                    if (pDistSq < 5000) { 
+                        let pDist = Math.sqrt(pDistSq);
+                        if (pDist === 0) pDist = 0.1;
+                        
+                        let force = (70 - pDist) * 0.0004; 
+                        
+                        if (pDist < particleRadius * 1.5) {
+                            force -= 0.015; 
+                        }
+
+                        p.vx += pDx * force;
+                        p.vy += pDy * force;
+                        p2.vx -= pDx * force;
+                        p2.vy -= pDy * force;
+                    }
+                }
+
+                p.vy += (pipeCenter - p.y) * 0.001;
+                
+                p.vx += (baseSpeed - p.vx) * 0.1; 
+                p.vy *= 0.85; 
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.y < pipeTop + particleRadius) {
+                    p.y = pipeTop + particleRadius;
+                    p.vy *= -0.2;
+                }
+                if (p.y > pipeBottom - particleRadius) {
+                    p.y = pipeBottom - particleRadius;
+                    p.vy *= -0.2;
+                }
+
+                if (p.x > width + particleRadius * 2) {
+                    p.x = -particleRadius * 2;
+                    p.y = pipeTop + Math.random() * pipeHeight;
+                    p.vx = baseSpeed;
+                    p.vy = 0;
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, particleRadius, 0, Math.PI * 2);
+                ctx.fillStyle = '#40916C'; 
+                ctx.fill();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
