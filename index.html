@@ -175,10 +175,10 @@
         window.addEventListener('resize', resize);
         resize();
 
-        const particleCount = 750; 
+        const particleCount = 2000; 
         const particles = [];
         const baseSpeed = 4;
-        const particleRadius = 8;
+        const particleRadius = 4;
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -231,21 +231,30 @@
                     let pDx = p2.x - p.x;
                     let pDy = p2.y - p.y;
                     let pDistSq = pDx * pDx + pDy * pDy;
+                    const attractionDistanceSq = 1024; // 32*32
 
-                    if (pDistSq < 5000) { 
+                    if (pDistSq < attractionDistanceSq) { 
                         let pDist = Math.sqrt(pDistSq);
                         if (pDist === 0) pDist = 0.1;
                         
-                        let force = (35 - pDist) * 0.001;
-                        
-                        if (pDist < particleRadius * 2) {
-                            force -= 0.02; 
-                        }
+                        let force = 0;
+                        const repulsionDistance = particleRadius * 2; // 8
 
-                        p.vx += pDx * force;
-                        p.vy += pDy * force;
-                        p2.vx -= pDx * force;
-                        p2.vy -= pDy * force;
+                        if (pDist < repulsionDistance) {
+                            // Strong repulsion if too close
+                            force = (pDist - repulsionDistance) * 0.05;
+                        } else {
+                            // Gentle attraction if in range
+                            force = (attractionDistanceSq / (pDistSq + 1) - 1) * 0.0002;
+                        }
+                        
+                        let normDx = pDx / pDist;
+                        let normDy = pDy / pDist;
+
+                        p.vx += normDx * force;
+                        p.vy += normDy * force;
+                        p2.vx -= normDx * force;
+                        p2.vy -= normDy * force;
                     }
                 }
 
