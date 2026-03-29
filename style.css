@@ -219,7 +219,9 @@ nav {
 
 /* Buttons */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.8rem 1.5rem;
     background: var(--dark-green);
     color: white;
@@ -421,8 +423,13 @@ nav {
 .resume-links {
     display: flex;
     gap: 1rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     justify-content: center;
+}
+
+#resume .resume-links {
+    justify-content: flex-start;
+    margin-top: 2rem;
 }
 
 /* Resume Viewer */
@@ -520,7 +527,7 @@ footer {
     right: 0;
     width: 100px; /* Adjust width as desired */
     height: 100%;
-    z-index: -1; /* send it to the background */
+    z-index: 0; /* send it to the background */
 }
 
 #liquid-flow-canvas {
