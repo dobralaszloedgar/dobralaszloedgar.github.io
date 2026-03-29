@@ -86,9 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('liquid-flow-container');
     let width = container.offsetWidth;
-    let height = document.body.scrollHeight;
-    canvas.width = width;
-    canvas.height = height;
+    let height;
 
     const particleCount = 800;
     const allParticles = [];
@@ -100,6 +98,22 @@ document.addEventListener('DOMContentLoaded', () => {
         y: null,
         radius: 30 // Reasonably small radius
     };
+
+    function setCanvasHeight() {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            const desiredHeight = contactSection.offsetTop + contactSection.offsetHeight;
+            container.style.height = `${desiredHeight}px`;
+            canvas.height = desiredHeight;
+            height = desiredHeight;
+        } else {
+            height = document.body.scrollHeight;
+            canvas.height = height;
+        }
+    }
+
+    setCanvasHeight();
+    canvas.width = width;
 
     container.addEventListener('mousemove', (event) => {
         mouse.x = event.offsetX;
@@ -216,9 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function resizeCanvas() {
         width = container.offsetWidth;
-        height = document.body.scrollHeight;
+        setCanvasHeight();
         canvas.width = width;
-        canvas.height = height;
         allParticles.length = 0;
         createParticle('#1B4332', [width * 0.1, width * 0.45]);
         createParticle('#40916C', [width * 0.55, width * 0.9]);
@@ -226,8 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('scroll', () => {
-        if (height !== document.body.scrollHeight) {
-            resizeCanvas();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            const desiredHeight = contactSection.offsetTop + contactSection.offsetHeight;
+            if (height !== desiredHeight) {
+                resizeCanvas();
+            }
         }
     });
 
