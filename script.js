@@ -88,10 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = container.offsetWidth;
     let height;
 
-    const particleCount = 800;
+    const particleCount = 500;
     const allParticles = [];
-    const particleRadius = 5;
-    const baseSpeedY = 1.5;
+    const particleRadius = 8;
+    const baseSpeedY = 2.5;
 
     const mouse = {
         x: null,
