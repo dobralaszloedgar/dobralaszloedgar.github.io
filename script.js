@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mouse = {
         x: null,
         y: null,
-        radius: 50 // Reasonably small radius
+        radius: 30 // Reasonably small radius
     };
 
     container.addEventListener('mousemove', (event) => {
@@ -180,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const forceDirectionX = dx / dist;
                     const forceDirectionY = dy / dist;
                     const force = (mouse.radius - dist) / mouse.radius;
-                    p.vx += forceDirectionX * force * 0.5;
-                    p.vy += forceDirectionY * force * 0.5;
+                    p.vx += forceDirectionX * force * 0.1;
+                    p.vy += forceDirectionY * force * 0.1;
                 }
             }
 
