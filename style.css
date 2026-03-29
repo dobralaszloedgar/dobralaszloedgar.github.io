@@ -163,6 +163,7 @@ nav {
     flex: 1;
     position: relative;
     z-index: 2;
+    text-align: center;
 }
 
 .hero-image {
@@ -213,7 +214,7 @@ nav {
 .hero p {
     font-size: 1.2rem;
     max-width: 700px;
-    margin-bottom: 1rem;
+    margin: 0 auto;
 }
 
 /* Buttons */
@@ -286,13 +287,13 @@ nav {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.1rem;
-    top: 0.3rem;
+    left: -1.8rem;
+    top: 0.5rem;
     width: 15px;
     height: 15px;
     border-radius: 50%;
     background-color: var(--accent);
-    border: 3px solid var(--bg);
+    border: 3px solid var(--bg-light);
 }
 
 .timeline-item h3 {
@@ -419,7 +420,8 @@ nav {
 .resume-links {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
+    justify-content: center;
 }
 
 /* Resume Viewer */

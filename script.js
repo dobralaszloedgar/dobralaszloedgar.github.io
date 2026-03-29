@@ -139,25 +139,38 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = width;
     canvas.height = height;
 
-    const particleCount = 300; // Increased particle count
+    const particleCount = 2000; // Increased particle count
     const allParticles = [];
     const particleRadius = 5;
     const baseSpeedY = 1.5;
 
+    const mouse = {
+        x: null,
+        y: null,
+        radius: 150
+    };
+
+    window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x;
+        mouse.y = event.y;
+    });
+
     function createParticle(color, initialXRange) {
-        for (let i = 0; i < particleCount / 2; i++) {
+        const count = particleCount / 2;
+        for (let i = 0; i < count; i++) {
             allParticles.push({
                 x: initialXRange[0] + Math.random() * (initialXRange[1] - initialXRange[0]),
                 y: Math.random() * height,
                 vy: baseSpeedY + (Math.random() - 0.5) * 0.5,
                 vx: (Math.random() - 0.5) * 0.2,
-                color: color
+                color: color,
+                mass: 1
             });
         }
     }
 
-    createParticle('#40916C', [width * 0.1, width * 0.45]); // First current
-    createParticle('#52B788', [width * 0.55, width * 0.9]); // Second current
+    createParticle('#1B4332', [width * 0.1, width * 0.45]); // Dark green
+    createParticle('#40916C', [width * 0.55, width * 0.9]); // Lighter green
 
     function resolveCollision(p1, p2) {
         const dx = p2.x - p1.x;
@@ -169,32 +182,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const sin = Math.sin(angle);
             const cos = Math.cos(angle);
 
-            // Rotate p1's position
             const pos0 = { x: 0, y: 0 };
-
-            // Rotate p2's position
             const pos1 = { x: dx * cos + dy * sin, y: dy * cos - dx * sin };
 
-            // Rotate p1's velocity
             const vel0 = { x: p1.vx * cos + p1.vy * sin, y: p1.vy * cos - p1.vx * sin };
-
-            // Rotate p2's velocity
             const vel1 = { x: p2.vx * cos + p2.vy * sin, y: p2.vy * cos - p2.vx * sin };
             
-            // Collision reaction
             const vxTotal = vel0.x - vel1.x;
             vel0.x = ((p1.mass - p2.mass) * vel0.x + 2 * p2.mass * vel1.x) / (p1.mass + p2.mass);
             vel1.x = vxTotal + vel0.x;
             
-            // Move particles apart
-            const absV = Math.abs(vel0.x) + Math.abs(vel1.x);
             const overlap = (particleRadius * 2) - dist;
             p1.x -= (overlap / 2) * Math.cos(angle);
             p1.y -= (overlap / 2) * Math.sin(angle);
             p2.x += (overlap / 2) * Math.cos(angle);
             p2.y += (overlap / 2) * Math.sin(angle);
 
-            // Rotate velocities back
             const vel0F = { x: vel0.x * cos - vel0.y * sin, y: vel0.y * cos + vel0.x * sin };
             const vel1F = { x: vel1.x * cos - vel1.y * sin, y: vel1.y * cos + vel1.x * sin };
 
@@ -204,7 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
             p2.vy = vel1F.y;
         }
     }
-
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
@@ -216,25 +218,32 @@ document.addEventListener('DOMContentLoaded', () => {
             p.y += p.vy;
             p.x += p.vx;
 
-            // Damping
+            // Mouse interaction
+            if (mouse.x && mouse.y) {
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < mouse.radius) {
+                    const forceDirectionX = dx / dist;
+                    const forceDirectionY = dy / dist;
+                    const force = (mouse.radius - dist) / mouse.radius;
+                    p.vx += forceDirectionX * force * 0.5;
+                    p.vy += forceDirectionY * force * 0.5;
+                }
+            }
+
             p.vx *= 0.99;
 
-            // Particle collisions
             for (let j = i + 1; j < allParticles.length; j++) {
                 resolveCollision(p, allParticles[j]);
             }
 
-            // Reset particle if it scrolls out of view
-            if (p.y > window.scrollY + window.innerHeight + particleRadius) {
-                 p.y = window.scrollY - particleRadius;
-                 // Keep x within its initial range to maintain two streams
-                 const initialXRange = (p.color === '#40916C') ? [width * 0.1, width * 0.45] : [width * 0.55, width * 0.9];
-                 p.x = initialXRange[0] + Math.random() * (initialXRange[1] - initialXRange[0]);
-                 p.vx = (Math.random() - 0.5) * 0.2;
-                 p.vy = baseSpeedY + (Math.random() - 0.5) * 0.5;
+            if (p.y > height + particleRadius) {
+                p.y = -particleRadius;
+            } else if (p.y < -particleRadius) {
+                p.y = height + particleRadius;
             }
             
-            // Wall collision
             if (p.x < particleRadius) {
                 p.x = particleRadius;
                 p.vx *= -0.5;
@@ -258,18 +267,16 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = width;
         canvas.height = height;
         allParticles.length = 0;
-        createParticle('#40916C', [width * 0.1, width * 0.45]);
-        createParticle('#52B788', [width * 0.55, width * 0.9]);
+        createParticle('#1B4332', [width * 0.1, width * 0.45]);
+        createParticle('#40916C', [width * 0.55, width * 0.9]);
     }
 
     window.addEventListener('resize', resizeCanvas);
-    // Also resize on scroll to handle dynamic content loading
     window.addEventListener('scroll', () => {
         if (height !== document.body.scrollHeight) {
             resizeCanvas();
         }
     });
-
 
     animate();
 });
