@@ -281,13 +281,13 @@ nav {
 }
 
 .timeline-item:hover {
-    transform: translateX(10px);
+    transform: translateX(15px);
 }
 
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -1.8rem;
+    left: -1.9rem;
     top: 0.5rem;
     width: 15px;
     height: 15px;
@@ -520,7 +520,6 @@ footer {
     width: 100px; /* Adjust width as desired */
     height: 100%;
     z-index: -1; /* send it to the background */
-    pointer-events: none; 
 }
 
 #liquid-flow-canvas {
