@@ -289,7 +289,7 @@ nav {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.25rem;
+    left: -1.9rem;
     top: 0.5rem;
     width: 15px;
     height: 15px;
@@ -310,7 +310,7 @@ nav {
 }
 
 .timeline-item ul {
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     list-style-position: inside;
     margin-top: 0.5rem;
 }
@@ -524,7 +524,7 @@ footer {
 #liquid-flow-container {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     width: 100px; /* Adjust width as desired */
     height: 100%;
     z-index: 0; /* send it to the background */
