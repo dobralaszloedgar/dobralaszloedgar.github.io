@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = width;
     canvas.height = height;
 
-    const particleCount = 2000; // Increased particle count
+    const particleCount = 800; // Increased particle count
     const allParticles = [];
     const particleRadius = 5;
     const baseSpeedY = 1.5;
