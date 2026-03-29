@@ -308,7 +308,8 @@ nav {
 }
 
 .timeline-item ul {
-    margin-left: 1.5rem;
+    padding-left: 1.2rem;
+    list-style-position: inside;
     margin-top: 0.5rem;
 }
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Observer for animations
     const observerElements = document.querySelectorAll('.animate-on-scroll, .animate-photo');
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {
         threshold: 0.15
     });
-
     observerElements.forEach(el => observer.observe(el));
 
-    // Add smooth scroll behavior
+    // Smooth scroll behavior
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -27,108 +26,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize poster viewer with zoom and pan capabilities
+    // Poster viewer logic
     const posterGallery = document.getElementById('poster-gallery');
     let viewer = null;
     let targetSection = null;
-
     if (posterGallery) {
         viewer = new Viewer(posterGallery, {
             inline: false,
             viewed() {
-                // When viewer opens, check if we need to zoom to a section
                 if (targetSection && sectionCoords[targetSection]) {
                     const coords = sectionCoords[targetSection];
-
                     setTimeout(() => {
                         const imageData = viewer.imageData;
                         const containerWidth = viewer.viewer.offsetWidth;
                         const containerHeight = viewer.viewer.offsetHeight;
-
-                        // Calculate the target point in original image coordinates
                         const targetX = imageData.naturalWidth * coords.x;
                         const targetY = imageData.naturalHeight * coords.y;
-
-                        // Zoom to the specified level
                         viewer.zoomTo(coords.zoom);
-
-                        // Wait for zoom animation, then pan
                         setTimeout(() => {
-                            // Get current image position after zoom
-                            const currentImageData = viewer.imageData;
-
-                            // Calculate where the target point is now (after zoom)
                             const scaledTargetX = targetX * coords.zoom;
                             const scaledTargetY = targetY * coords.zoom;
-
-                            // Calculate the left/top needed to center the target point
                             const left = (containerWidth / 2) - scaledTargetX;
                             const top = (containerHeight / 2) - scaledTargetY;
-
                             viewer.moveTo(left, top);
                         }, 500);
                     }, 200);
                 }
             },
             toolbar: {
-                zoomIn: 4,
-                zoomOut: 4,
-                oneToOne: 4,
-                reset: 4,
-                prev: false,
-                play: false,
-                next: false,
-                rotateLeft: 4,
-                rotateRight: 4,
-                flipHorizontal: 4,
-                flipVertical: 4,
+                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
             },
-            title: true,
-            navbar: false,
-            tooltip: true,
-            movable: true,
-            zoomable: true,
-            rotatable: true,
-            scalable: true,
-            transition: true,
-            fullscreen: true,
-            keyboard: true,
-            zoomRatio: 0.1,
-            minZoomRatio: 0.1,
-            maxZoomRatio: 5,
+            title: true, navbar: false, tooltip: true, movable: true, zoomable: true, rotatable: true, scalable: true, transition: true, fullscreen: true, keyboard: true, zoomRatio: 0.1, minZoomRatio: 0.1, maxZoomRatio: 5,
         });
     }
 
-    // Interactive poster section zoom
-    const posterButtons = document.querySelectorAll('.poster-btn');
-
-    // Define coordinates for each section (normalized 0-1 coordinates)
-    // Reduced zoom levels for better context visibility
     const sectionCoords = {
-        'introduction': { x: 0.13, y: 0.32, zoom: 0.45 },      // Left column - Introduction & BBCPs
-        'methods': { x: 0.50, y: 0.32, zoom: 0.5 },           // Middle column - Methods workflow
-        'automation': { x: 0.13, y: 0.72, zoom: 0.35 },        // Left bottom - OT-2 Automation
-        'results': { x: 0.87, y: 0.32, zoom: 0.5 },           // Right column - GPC Results
-        'future': { x: 0.62, y: 0.86, zoom: 0.3 }             // Bottom center - Future Work
+        'introduction': { x: 0.13, y: 0.32, zoom: 0.45 },
+        'methods': { x: 0.50, y: 0.32, zoom: 0.5 },
+        'automation': { x: 0.13, y: 0.72, zoom: 0.35 },
+        'results': { x: 0.87, y: 0.32, zoom: 0.5 },
+        'future': { x: 0.62, y: 0.86, zoom: 0.3 }
     };
 
-    posterButtons.forEach(button => {
+    document.querySelectorAll('.poster-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const section = button.getAttribute('data-section');
-
             if (viewer) {
-                // Set target section
                 targetSection = section;
-
-                // Show the viewer (the 'viewed' callback will handle zooming)
                 viewer.show();
             }
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+    // Liquid flow animation
     const canvas = document.getElementById('liquid-flow-canvas');
     if (!canvas) return;
     
@@ -139,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = width;
     canvas.height = height;
 
-    const particleCount = 800; // Increased particle count
+    const particleCount = 800;
     const allParticles = [];
     const particleRadius = 5;
     const baseSpeedY = 1.5;
@@ -147,12 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const mouse = {
         x: null,
         y: null,
-        radius: 150
+        radius: 50 // Reasonably small radius
     };
 
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
+    container.addEventListener('mousemove', (event) => {
+        mouse.x = event.offsetX;
+        mouse.y = event.offsetY;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
     });
 
     function createParticle(color, initialXRange) {
@@ -169,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    createParticle('#1B4332', [width * 0.1, width * 0.45]); // Dark green
-    createParticle('#40916C', [width * 0.55, width * 0.9]); // Lighter green
+    createParticle('#1B4332', [width * 0.1, width * 0.45]);
+    createParticle('#40916C', [width * 0.55, width * 0.9]);
 
     function resolveCollision(p1, p2) {
         const dx = p2.x - p1.x;
@@ -181,9 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const angle = Math.atan2(dy, dx);
             const sin = Math.sin(angle);
             const cos = Math.cos(angle);
-
-            const pos0 = { x: 0, y: 0 };
-            const pos1 = { x: dx * cos + dy * sin, y: dy * cos - dx * sin };
 
             const vel0 = { x: p1.vx * cos + p1.vy * sin, y: p1.vy * cos - p1.vx * sin };
             const vel1 = { x: p2.vx * cos + p2.vy * sin, y: p2.vy * cos - p2.vx * sin };
@@ -280,3 +233,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animate();
 });
+
