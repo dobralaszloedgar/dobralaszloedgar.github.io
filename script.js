@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseSpeedY = 2.5;
 
     const mouse = {
-        x: null,
+        x: .1,
         y: null,
-        radius: 30 // Reasonably small radius
+        radius: 40 // Reasonably small radius
     };
 
     function setCanvasHeight() {
