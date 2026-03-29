@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const particleCount = 500;
     const allParticles = [];
-    const particleRadius = 8;
+    const particleRadius = 6;
     const baseSpeedY = 2.5;
 
     const mouse = {
