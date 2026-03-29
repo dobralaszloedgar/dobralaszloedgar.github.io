@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 vy: baseSpeedY + (Math.random() - 0.5) * 0.5,
                 vx: (Math.random() - 0.5) * 0.2,
                 color: color,
-                mass: 1
+                mass: 1.1
             });
         }
     }
