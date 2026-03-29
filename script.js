@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseSpeedY = 2.5;
 
     const mouse = {
-        x: .1,
+        x: .3,
         y: null,
         radius: 40 // Reasonably small radius
     };
