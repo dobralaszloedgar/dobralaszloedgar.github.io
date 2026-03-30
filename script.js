@@ -100,15 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function setCanvasHeight() {
+        const aboutSection = document.getElementById('about');
         const footer = document.querySelector('footer');
-        if (footer) {
+        if (aboutSection && footer) {
+            const aboutTop = aboutSection.offsetTop;
             const footerTop = footer.offsetTop;
-            const aboutSection = document.getElementById('about');
-            const aboutTop = aboutSection ? aboutSection.offsetTop : 0;
-            const desiredHeight = footerTop - aboutTop;
-            container.style.height = `${desiredHeight}px`;
-            canvas.height = desiredHeight;
-            height = desiredHeight;
+            container.style.top = `${aboutTop}px`;
+            container.style.height = `${footerTop - aboutTop}px`;
+            canvas.height = footerTop - aboutTop;
+            height = footerTop - aboutTop;
         } else {
             height = document.body.scrollHeight;
             canvas.height = height;
@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    createParticle('#50C878', [10, width * 0.45]);
-    createParticle('#B2E6B4', [width * 0.55, width - 10]);
+    createParticle('#50C878', [5, width * 0.4]);
+    createParticle('#B2E6B4', [width * 0.45, width - 5]);
 
     function resolveCollision(p1, p2) {
         const dx = p2.x - p1.x;
@@ -236,17 +236,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setCanvasHeight();
         canvas.width = width;
         allParticles.length = 0;
-        createParticle('#50C878', [10, width * 0.45]);
-        createParticle('#B2E6B4', [width * 0.55, width - 10]);
+        createParticle('#50C878', [5, width * 0.4]);
+        createParticle('#B2E6B4', [width * 0.45, width - 5]);
     }
 
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('scroll', () => {
+        const aboutSection = document.getElementById('about');
         const footer = document.querySelector('footer');
-        if (footer) {
-            const aboutSection = document.getElementById('about');
-            const aboutTop = aboutSection ? aboutSection.offsetTop : 0;
-            const desiredHeight = footer.offsetTop - aboutTop;
+        if (aboutSection && footer) {
+            const desiredHeight = footer.offsetTop - aboutSection.offsetTop;
             if (height !== desiredHeight) {
                 resizeCanvas();
             }
