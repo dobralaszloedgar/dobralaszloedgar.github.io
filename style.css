@@ -111,44 +111,6 @@ nav {
     max-width: 100%;
 }
 
-.hero::before {
-    content: '';
-    position: fixed;
-    top: 80vh;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background-color: transparent;
-    box-shadow:
-        10vw 15vh 2px 0px #ffffff22,
-        25vw 30vh 3px 1px #ffffff33,
-        40vw 50vh 2px 2px #ffffff11,
-        55vw 70vh 3px 1px #ffffff44,
-        70vw 85vh 2px 0px #ffffff22,
-        85vw 5vh 3px 1px #ffffff33,
-        5vw 90vh 2px 2px #ffffff11,
-        95vw 40vh 3px 1px #ffffff44,
-        /* Add more particles for a denser effect */
-        15vw 80vh 2px 0px #ffffff22,
-        30vw 10vh 3px 1px #ffffff33,
-        45vw 60vh 2px 2px #ffffff11,
-        60vw 25vh 3px 1px #ffffff44,
-        75vw 50vh 2px 0px #ffffff22,
-        90vw 75vh 3px 1px #ffffff33;
-    animation: move-particles 60s linear infinite;
-    z-index: 0;
-    left: -50%;
-    pointer-events: none;
-}
-
-@keyframes move-particles {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(25%, 25%);
-    }
-}
 
 .hero-content {
     display: flex;
@@ -331,7 +293,7 @@ nav {
 }
 
 .card {
-    background: white;
+    background: #e8f5e9;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(3, 49, 28, 0.15);
