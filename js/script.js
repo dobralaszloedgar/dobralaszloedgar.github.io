@@ -60,6 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // GPC viewer logic
+    const gpcGallery = document.getElementById('gpc-gallery');
+    if (gpcGallery) {
+        new Viewer(gpcGallery, {
+            inline: false,
+            toolbar: {
+                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+            },
+            title: true, navbar: false, tooltip: true, movable: true, zoomable: true, rotatable: true, scalable: true, transition: true, fullscreen: true, keyboard: true, zoomRatio: 0.1, minZoomRatio: 0.1, maxZoomRatio: 5,
+        });
+    }
+
     const sectionCoords = {
         'introduction': { x: 0.13, y: 0.32, zoom: 0.45 },
         'methods': { x: 0.50, y: 0.32, zoom: 0.5 },
