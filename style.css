@@ -113,8 +113,8 @@ nav {
 
 .hero::before {
     content: '';
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 80vh;
     left: 0;
     width: 200%;
     height: 200%;
@@ -138,6 +138,7 @@ nav {
     animation: move-particles 60s linear infinite;
     z-index: 0;
     left: -50%;
+    pointer-events: none;
 }
 
 @keyframes move-particles {
