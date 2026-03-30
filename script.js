@@ -127,10 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createParticle(color, initialXRange) {
         const count = particleCount / 2;
+        const aboutSection = document.getElementById('about');
+        const startY = aboutSection ? aboutSection.offsetTop : 0;
+
         for (let i = 0; i < count; i++) {
             allParticles.push({
                 x: initialXRange[0] + Math.random() * (initialXRange[1] - initialXRange[0]),
-                y: Math.random() * height,
+                y: startY + Math.random() * (height - startY),
                 vy: baseSpeedY + (Math.random() - 0.5) * 0.5,
                 vx: (Math.random() - 0.5) * 0.2,
                 color: color,
@@ -205,9 +208,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 resolveCollision(p, allParticles[j]);
             }
 
+            const aboutSection = document.getElementById('about');
+            const minY = aboutSection ? aboutSection.offsetTop : 0;
+
             if (p.y > height + particleRadius) {
-                p.y = -particleRadius;
-            } else if (p.y < -particleRadius) {
+                p.y = minY - particleRadius;
+            } else if (p.y < minY - particleRadius) {
                 p.y = height + particleRadius;
             }
             
