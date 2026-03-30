@@ -170,24 +170,25 @@ nav {
     flex: 0 0 300px;
 }
 
-.profile-photo {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--primary);
-    box-shadow: 0 10px 30px rgba(20, 87, 44, 0.3);
+.portrait-container {
+  overflow: hidden;
+  border-radius: 2rem;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 300px;
+  height: 300px;
+  border: 5px solid var(--primary);
+  box-shadow: 0 10px 30px rgba(20, 87, 44, 0.3);
 }
 
-.animate-photo {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+.portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.animate-photo.visible {
-    opacity: 1;
-    transform: scale(1);
+.portrait-container:hover .portrait-image {
+  transform: scale(1.08) rotate(2deg);
 }
 
 .hero h1 {
