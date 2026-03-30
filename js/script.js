@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = container.offsetWidth;
     let height;
 
-    const particleCount = 500;
+    const maxParticles = 500;
     const allParticles = [];
     const particleRadius = 6;
     const brownRadius = 8;
@@ -141,23 +141,25 @@ document.addEventListener('DOMContentLoaded', () => {
         mouse.y = null;
     });
 
-    function createParticle(color, initialXRange) {
-        const count = particleCount / 2;
-        for (let i = 0; i < count; i++) {
-            allParticles.push({
-                x: initialXRange[0] + Math.random() * (initialXRange[1] - initialXRange[0]),
-                y: Math.random() * height,
-                vy: baseSpeedY + (Math.random() - 0.5) * 0.5,
-                vx: (Math.random() - 0.5) * 0.2,
-                color: color,
-                mass: 1.5,
-                radius: particleRadius
-            });
+    function spawnParticle() {
+        if (allParticles.length >= maxParticles) {
+            allParticles.shift();
         }
+
+        const color = Math.random() < 0.5 ? color1 : color2;
+        const initialXRange = Math.random() < 0.5 ? [width * 0.1, width * 0.45] : [width * 0.55, width * 0.9];
+
+        allParticles.push({
+            x: initialXRange[0] + Math.random() * (initialXRange[1] - initialXRange[0]),
+            y: -particleRadius, // Start from the top
+            vy: baseSpeedY + (Math.random() - 0.5) * 0.5,
+            vx: (Math.random() - 0.5) * 0.2,
+            color: color,
+            mass: 1.5,
+            radius: particleRadius
+        });
     }
 
-    createParticle(color1, [width * 0.1, width * 0.45]);
-    createParticle(color2, [width * 0.55, width * 0.9]);
 
     function resolveCollision(p1, p2) {
         const dx = p2.x - p1.x;
@@ -257,9 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (merged) continue;
 
             if (p.y > height + p.radius) {
-                p.y = -p.radius;
-            } else if (p.y < -p.radius) {
-                p.y = height + p.radius;
+                toRemove.add(i); // Remove particle if it's off the bottom of the screen
+                continue;
             }
 
             if (p.x < p.radius) {
@@ -276,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fill();
         }
 
-        // Process merges: remove consumed particles and add brown ones
+        // Process merges and removals
         const sortedRemove = [...toRemove].sort((a, b) => b - a);
         for (const idx of sortedRemove) {
             allParticles.splice(idx, 1);
@@ -297,8 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setCanvasSize();
         canvas.width = width;
         allParticles.length = 0;
-        createParticle(color1, [width * 0.1, width * 0.45]);
-        createParticle(color2, [width * 0.55, width * 0.9]);
     }
 
     window.addEventListener('resize', resizeCanvas);
@@ -314,6 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    setInterval(spawnParticle, 50); // Spawn a new particle every 50ms
     animate();
 });
-
