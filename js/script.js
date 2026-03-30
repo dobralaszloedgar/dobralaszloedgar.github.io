@@ -72,6 +72,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // MEMS viewer logic
+    const pressureSensorGallery = document.getElementById('pressure-sensor-gallery');
+    if (pressureSensorGallery) {
+        new Viewer(pressureSensorGallery, {
+            inline: false,
+            url: (image) => image.dataset.original || image.src,
+            toolbar: {
+                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+            },
+            title: (image) => `${image.alt} - Diagram`,
+            navbar: false,
+            tooltip: true,
+            movable: true,
+            zoomable: true,
+            rotatable: true,
+            scalable: true,
+            transition: true,
+            fullscreen: true,
+            keyboard: true,
+            zoomRatio: 0.1,
+            minZoomRatio: 0.1,
+            maxZoomRatio: 5,
+        });
+    }
+
+    const microfluidicMixerGallery = document.getElementById('microfluidic-mixer-gallery');
+    if (microfluidicMixerGallery) {
+        new Viewer(microfluidicMixerGallery, {
+            inline: false,
+            url: (image) => image.dataset.original || image.src,
+            toolbar: {
+                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+            },
+            title: (image) => `${image.alt} - Diagram`,
+            navbar: false,
+            tooltip: true,
+            movable: true,
+            zoomable: true,
+            rotatable: true,
+            scalable: true,
+            transition: true,
+            fullscreen: true,
+            keyboard: true,
+            zoomRatio: 0.1,
+            minZoomRatio: 0.1,
+            maxZoomRatio: 5,
+        });
+    }
+
     const sectionCoords = {
         'introduction': { x: 0.13, y: 0.32, zoom: 0.45 },
         'methods': { x: 0.50, y: 0.32, zoom: 0.5 },

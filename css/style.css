@@ -542,3 +542,51 @@ footer {
         height: 600px;
     }
 }
+
+/* MEMS Section Styles */
+.mems-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.mems-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mems-item h4 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.mems-image-container {
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--accent-light);
+    transition: all 0.3s ease;
+    position: relative;
+    width: 100%;
+}
+
+.mems-image-container:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(8, 140, 89, 0.3);
+}
+
+.mems-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.mems-image-container:hover .mems-image {
+    transform: scale(1.02);
+}
