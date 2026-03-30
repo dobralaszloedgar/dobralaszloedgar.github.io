@@ -8,7 +8,7 @@
     --accent-light: #088C59;
     --text: #055437;
     --bg: #F8F9FA;
-    --bg-light: #E9ECEF;
+    --bg-light: #d0e3ca;
     --dark-green: #063D25;
 }
 
@@ -189,7 +189,7 @@ nav {
   height: auto;
   object-fit: cover;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: scale(1.015);
+  transform: scale(1.025);
 }
 
 .portrait-container:hover .portrait-image {
