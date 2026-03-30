@@ -106,19 +106,19 @@ nav {
     align-items: center;
     background: linear-gradient(135deg, var(--bg) 0%, var(--accent-light) 100%);
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     padding: 2rem 0;
 }
 
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 100%;
     left: 0;
     width: 200%;
     height: 200%;
     background-color: transparent;
-    box-shadow: 
+    box-shadow:
         10vw 15vh 2px 0px #ffffff22,
         25vw 30vh 3px 1px #ffffff33,
         40vw 50vh 2px 2px #ffffff11,
@@ -136,7 +136,6 @@ nav {
         90vw 75vh 3px 1px #ffffff33;
     animation: move-particles 60s linear infinite;
     z-index: 0;
-    top: -50%;
     left: -50%;
 }
 
