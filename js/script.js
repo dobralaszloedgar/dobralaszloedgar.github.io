@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = container.offsetWidth;
     let height;
 
-    const maxParticles = 500;
+    const maxParticles = 600;
     const allParticles = [];
     const particleRadius = 6;
     const brownRadius = 8;
