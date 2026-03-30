@@ -247,7 +247,7 @@ nav {
 
 .timeline-item {
     margin-bottom: 2rem;
-    position: relative;
+    position: absolute;
     transition: transform 0.3s ease;
 }
 
