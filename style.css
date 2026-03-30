@@ -94,7 +94,7 @@ nav {
 }
 
 .bg-light {
-    background-color: var(--bg-light);
+    background-color: #e8f5e9;
     max-width: 100%;
 }
 
@@ -107,7 +107,7 @@ nav {
     background: linear-gradient(135deg, var(--bg) 0%, var(--accent-light) 100%);
     position: relative;
     overflow: visible;
-    padding: 2rem 5%;
+    padding: 2rem 0;
 }
 
 .hero::before {
@@ -153,10 +153,11 @@ nav {
     display: flex;
     align-items: center;
     gap: 4rem;
-    max-width: 1200px;
+    max-width: 100%;
     width: 100%;
     z-index: 1;
     position: relative;
+    padding: 0 5%;
 }
 
 .hero-text {
@@ -188,10 +189,11 @@ nav {
   height: auto;
   object-fit: cover;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.015);
 }
 
 .portrait-container:hover .portrait-image {
-  transform: scale(1.08);
+  transform: scale(1.095);
 }
 
 .hero h1 {
@@ -365,7 +367,7 @@ nav {
 
 /* Poster Card & Interactive Sections */
 .poster-card {
-    background: linear-gradient(135deg, var(--bg-light) 0%, rgb(5, 71, 42) 100%);
+    background: #e8f5e9;
 }
 
 .poster-sections {
