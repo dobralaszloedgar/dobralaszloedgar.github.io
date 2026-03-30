@@ -88,15 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = container.offsetWidth;
     let height;
 
-    const particleCount = 500;
+    const particleCount = 800;
     const allParticles = [];
-    const particleRadius = 6;
-    const baseSpeedY = 2.5;
+    const particleRadius = 5;
+    const baseSpeedY = 1.5;
 
     const mouse = {
-        x: .6,
+        x: null,
         y: null,
-        radius: 40 // Reasonably small radius
+        radius: 30 // Reasonably small radius
     };
 
     function setCanvasHeight() {
@@ -139,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    createParticle('#1B4332', [width * 0.1, width * 0.45]);
-    createParticle('#40916C', [width * 0.55, width * 0.9]);
+    createParticle('#50C878', [width * 0.1, width * 0.45]);
+    createParticle('#B2E6B4', [width * 0.55, width * 0.9]);
 
     function resolveCollision(p1, p2) {
         const dx = p2.x - p1.x;
@@ -233,8 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setCanvasHeight();
         canvas.width = width;
         allParticles.length = 0;
-        createParticle('#1B4332', [width * 0.1, width * 0.45]);
-        createParticle('#40916C', [width * 0.55, width * 0.9]);
+        createParticle('#50C878', [width * 0.1, width * 0.45]);
+        createParticle('#B2E6B4', [width * 0.55, width * 0.9]);
     }
 
     window.addEventListener('resize', resizeCanvas);

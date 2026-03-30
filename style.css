@@ -2,14 +2,14 @@
 
 /* Base Styles & Typography */
 :root {
-    --primary: #081C15;
-    --secondary: #1B4332;
-    --accent: #2D6A4F;
-    --accent-light: #40916C;
-    --text: #2D3436;
-    --bg: #F5F5F5; /* whitesmoke */
-    --bg-light: #D8F3DC;
-    --dark-green: #06402b;
+    --primary: #14572C;
+    --secondary: #50C878;
+    --accent: #FFCC80;
+    --accent-light: #B2E6B4;
+    --text: #14572C;
+    --bg: #E7F1E3; /* Whisper White */
+    --bg-light: #B2E6B4;
+    --dark-green: #14572C;
 }
 
 html, body {
@@ -45,7 +45,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(27, 67, 50, 0.3);
+    box-shadow: 0 2px 10px rgba(20, 87, 44, 0.3);
 }
 
 .logo {
@@ -94,7 +94,7 @@ nav {
 }
 
 .bg-light {
-    background-color: #B7E4C7;
+    background-color: var(--bg-light);
     max-width: 100%;
 }
 
@@ -104,7 +104,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #95D5B2 0%, #74C69D 50%, #52B788 100%);
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--secondary) 100%);
     position: relative;
     overflow: visible;
     padding: 2rem 5%;
@@ -176,7 +176,7 @@ nav {
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid var(--primary);
-    box-shadow: 0 10px 30px rgba(27, 67, 50, 0.3);
+    box-shadow: 0 10px 30px rgba(20, 87, 44, 0.3);
 }
 
 .animate-photo {
@@ -253,9 +253,9 @@ nav {
 }
 
 .btn:hover {
-    background: #40916C;
+    background: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(82, 183, 136, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 204, 128, 0.4);
 }
 
 .btn-outline {
@@ -327,7 +327,7 @@ nav {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(8, 28, 21, 0.15);
+    box-shadow: 0 4px 6px rgba(20, 87, 44, 0.15);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -341,7 +341,7 @@ nav {
 
 .card:hover {
     transform: translateY(-10px) rotate(1deg);
-    box-shadow: 0 12px 24px rgba(8, 28, 21, 0.25), 0 0 20px var(--accent-light);
+    box-shadow: 0 12px 24px rgba(20, 87, 44, 0.25), 0 0 20px var(--accent-light);
     border-color: var(--accent-light);
 }
 
@@ -361,7 +361,7 @@ nav {
 
 /* Poster Card & Interactive Sections */
 .poster-card {
-    background: linear-gradient(135deg, #B7E4C7 0%, #95D5B2 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, #a2d8b0 100%);
 }
 
 .poster-sections {
@@ -386,7 +386,7 @@ nav {
 .poster-btn:hover {
     background: var(--secondary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(45, 106, 79, 0.4);
+    box-shadow: 0 4px 8px rgba(80, 200, 120, 0.4);
 }
 
 .poster-btn:active {
@@ -406,7 +406,7 @@ nav {
 
 .poster-preview:hover {
     border-color: var(--accent);
-    box-shadow: 0 4px 12px rgba(82, 183, 136, 0.3);
+    box-shadow: 0 4px 12px rgba(178, 230, 180, 0.3);
 }
 
 .poster-thumbnail {
@@ -438,7 +438,7 @@ nav {
     border: 2px solid var(--accent-light);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.1);
+    box-shadow: 0 4px 12px rgba(80, 200, 120, 0.1);
 }
 
 .resume-viewer iframe {
