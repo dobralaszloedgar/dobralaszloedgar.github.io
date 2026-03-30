@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Liquid flow animation
     const canvas = document.getElementById('liquid-flow-canvas');
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('liquid-flow-container');
     let width = container.offsetWidth;
@@ -91,28 +91,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const particleCount = 500;
     const allParticles = [];
     const particleRadius = 6;
+    const brownRadius = 8;
+    const brownMass = 3;
+    const brownColor = '#8B5A2B';
+    const color1 = '#0B5E2A';
+    const color2 = '#C8F5CC';
     const baseSpeedY = 1.5;
 
     const mouse = {
-        x: .5,
+        x: null,
         y: null,
-        radius: 40 // Reasonably small radius
+        radius: 40
     };
 
-    function setCanvasHeight() {
+    function setCanvasSize() {
+        const aboutSection = document.getElementById('about');
         const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            const desiredHeight = contactSection.offsetTop + contactSection.offsetHeight;
-            container.style.height = `${desiredHeight}px`;
-            canvas.height = desiredHeight;
-            height = desiredHeight;
-        } else {
-            height = document.body.scrollHeight;
-            canvas.height = height;
-        }
+        const startY = aboutSection ? aboutSection.offsetTop : 0;
+        const endY = contactSection ? contactSection.offsetTop + contactSection.offsetHeight : document.body.scrollHeight;
+        container.style.top = `${startY}px`;
+        const canvasHeight = endY - startY;
+        container.style.height = `${canvasHeight}px`;
+        canvas.height = canvasHeight;
+        height = canvasHeight;
     }
 
-    setCanvasHeight();
+    setCanvasSize();
     canvas.width = width;
 
     container.addEventListener('mousemove', (event) => {
@@ -127,42 +131,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createParticle(color, initialXRange) {
         const count = particleCount / 2;
-        const aboutSection = document.getElementById('about');
-        const startY = aboutSection ? aboutSection.offsetTop : 0;
-
         for (let i = 0; i < count; i++) {
             allParticles.push({
                 x: initialXRange[0] + Math.random() * (initialXRange[1] - initialXRange[0]),
-                y: startY + Math.random() * (height - startY),
+                y: Math.random() * height,
                 vy: baseSpeedY + (Math.random() - 0.5) * 0.5,
                 vx: (Math.random() - 0.5) * 0.2,
                 color: color,
-                mass: 1.5
+                mass: 1.5,
+                radius: particleRadius
             });
         }
     }
 
-    createParticle('#50C878', [width * 0.1, width * 0.45]);
-    createParticle('#B2E6B4', [width * 0.55, width * 0.9]);
+    createParticle(color1, [width * 0.1, width * 0.45]);
+    createParticle(color2, [width * 0.55, width * 0.9]);
 
     function resolveCollision(p1, p2) {
         const dx = p2.x - p1.x;
         const dy = p2.y - p1.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
+        const minDist = p1.radius + p2.radius;
 
-        if (dist < particleRadius * 2) {
+        if (dist < minDist && dist > 0) {
+            // Cross-color merge: two different original-color particles combine into brown
+            if (p1.color !== brownColor && p2.color !== brownColor && p1.color !== p2.color) {
+                return 'merge';
+            }
+
             const angle = Math.atan2(dy, dx);
             const sin = Math.sin(angle);
             const cos = Math.cos(angle);
 
             const vel0 = { x: p1.vx * cos + p1.vy * sin, y: p1.vy * cos - p1.vx * sin };
             const vel1 = { x: p2.vx * cos + p2.vy * sin, y: p2.vy * cos - p2.vx * sin };
-            
+
             const vxTotal = vel0.x - vel1.x;
             vel0.x = ((p1.mass - p2.mass) * vel0.x + 2 * p2.mass * vel1.x) / (p1.mass + p2.mass);
             vel1.x = vxTotal + vel0.x;
-            
-            const overlap = (particleRadius * 2) - dist;
+
+            const overlap = minDist - dist;
             p1.x -= (overlap / 2) * Math.cos(angle);
             p1.y -= (overlap / 2) * Math.sin(angle);
             p2.x += (overlap / 2) * Math.cos(angle);
@@ -182,14 +190,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, width, height);
         ctx.globalAlpha = 0.8;
 
+        const toRemove = new Set();
+        const toAdd = [];
+
         for (let i = 0; i < allParticles.length; i++) {
+            if (toRemove.has(i)) continue;
             let p = allParticles[i];
 
             p.y += p.vy;
             p.x += p.vx;
 
             // Mouse interaction
-            if (mouse.x && mouse.y) {
+            if (mouse.x !== null && mouse.y !== null) {
                 const dx = p.x - mouse.x;
                 const dy = p.y - mouse.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -204,50 +216,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
             p.vx *= 0.99;
 
+            let merged = false;
             for (let j = i + 1; j < allParticles.length; j++) {
-                resolveCollision(p, allParticles[j]);
+                if (toRemove.has(j)) continue;
+                const result = resolveCollision(p, allParticles[j]);
+                if (result === 'merge') {
+                    const p2 = allParticles[j];
+                    // Momentum conservation: m_new * v_new = m1*v1 + m2*v2
+                    // brownMass = 2x single particle mass (3 vs 1.5)
+                    const newVx = (p.mass * p.vx + p2.mass * p2.vx) / brownMass;
+                    const newVy = (p.mass * p.vy + p2.mass * p2.vy) / brownMass;
+                    toAdd.push({
+                        x: (p.x + p2.x) / 2,
+                        y: (p.y + p2.y) / 2,
+                        vx: newVx,
+                        vy: newVy,
+                        color: brownColor,
+                        mass: brownMass,
+                        radius: brownRadius
+                    });
+                    toRemove.add(i);
+                    toRemove.add(j);
+                    merged = true;
+                    break;
+                }
             }
 
-            const aboutSection = document.getElementById('about');
-            const minY = aboutSection ? aboutSection.offsetTop : 0;
+            if (merged) continue;
 
-            if (p.y > height + particleRadius) {
-                p.y = minY - particleRadius;
-            } else if (p.y < minY - particleRadius) {
-                p.y = height + particleRadius;
+            if (p.y > height + p.radius) {
+                p.y = -p.radius;
+            } else if (p.y < -p.radius) {
+                p.y = height + p.radius;
             }
-            
-            if (p.x < particleRadius) {
-                p.x = particleRadius;
+
+            if (p.x < p.radius) {
+                p.x = p.radius;
                 p.vx *= -0.5;
-            } else if (p.x > width - particleRadius) {
-                p.x = width - particleRadius;
+            } else if (p.x > width - p.radius) {
+                p.x = width - p.radius;
                 p.vx *= -0.5;
             }
 
             ctx.beginPath();
-            ctx.arc(p.x, p.y, particleRadius, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
             ctx.fillStyle = p.color;
+            ctx.fill();
+        }
+
+        // Process merges: remove consumed particles and add brown ones
+        const sortedRemove = [...toRemove].sort((a, b) => b - a);
+        for (const idx of sortedRemove) {
+            allParticles.splice(idx, 1);
+        }
+        for (const np of toAdd) {
+            allParticles.push(np);
+            ctx.beginPath();
+            ctx.arc(np.x, np.y, np.radius, 0, Math.PI * 2);
+            ctx.fillStyle = np.color;
             ctx.fill();
         }
 
         requestAnimationFrame(animate);
     }
-    
+
     function resizeCanvas() {
         width = container.offsetWidth;
-        setCanvasHeight();
+        setCanvasSize();
         canvas.width = width;
         allParticles.length = 0;
-        createParticle('#50C878', [width * 0.1, width * 0.45]);
-        createParticle('#B2E6B4', [width * 0.55, width * 0.9]);
+        createParticle(color1, [width * 0.1, width * 0.45]);
+        createParticle(color2, [width * 0.55, width * 0.9]);
     }
 
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('scroll', () => {
+        const aboutSection = document.getElementById('about');
         const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            const desiredHeight = contactSection.offsetTop + contactSection.offsetHeight;
+        if (aboutSection && contactSection) {
+            const startY = aboutSection.offsetTop;
+            const desiredHeight = contactSection.offsetTop + contactSection.offsetHeight - startY;
             if (height !== desiredHeight) {
                 resizeCanvas();
             }
