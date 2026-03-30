@@ -241,7 +241,7 @@ nav {
 /* Timeline */
 .timeline {
     margin-top: 2rem;
-    border-left: 3px solid var(--bg-light);
+    border-left: 3px solid var(--accent);
     padding-left: 1.5rem;
 }
 
@@ -264,7 +264,7 @@ nav {
     height: 15px;
     border-radius: 50%;
     background-color: var(--accent);
-    border: 3px solid var(--bg-light);
+    border: 3px solid var(#e8f5e9);
 }
 
 .timeline-item h3 {
