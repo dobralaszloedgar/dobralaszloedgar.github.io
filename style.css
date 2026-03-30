@@ -243,11 +243,12 @@ nav {
     margin-top: 2rem;
     border-left: 3px solid var(--accent);
     padding-left: 1.5rem;
+    margin-left: 1rem; /* Added so the left side of the bullet doesn't clip off the screen */
 }
 
 .timeline-item {
     margin-bottom: 2rem;
-    position: absolute;
+    position: relative;
     transition: transform 0.3s ease;
 }
 
@@ -258,13 +259,14 @@ nav {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.065rem;
-    top: 0.5rem;
+    /* Perfectly centers the bullet horizontally on the 3px border using calc() */
+    left: calc(-1.5rem - 1.5px - 10.5px); 
+    top: 0.25rem; /* Adjusted slightly for better vertical alignment with heading text */
     width: 15px;
     height: 15px;
     border-radius: 50%;
     background-color: var(--accent);
-    border: 3px solid var(#e8f5e9);
+    border: 3px solid #e8f5e9; /* Fixed the invalid var() syntax here */
 }
 
 .timeline-item h3 {
