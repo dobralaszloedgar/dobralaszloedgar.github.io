@@ -19,6 +19,5 @@ This repository contains the source code for my interactive portfolio, which fea
 
 ## Tech Stack
 * HTML5 & CSS3
-* JavaScript (Vanilla JS for interactive canvas elements)
-* Viewer.js (For document and image galleries)
-* FontAwesome 
+* JavaScript (Three.js for simulations)
+
