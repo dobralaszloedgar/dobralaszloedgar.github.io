@@ -53,7 +53,7 @@ function updateResumeLink(lang) {
 
 async function loadTranslations(lang) {
     try {
-        const response = await fetch(prefix + `${lang}.json`);
+        const response = await fetch(prefix + `json/${lang}.json`);
         translations[lang] = await response.json();
     } catch (error) {
         console.error(`Could not load translations for ${lang}`, error);
