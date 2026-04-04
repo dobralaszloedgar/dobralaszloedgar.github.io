@@ -2,9 +2,9 @@ const translations = {};
 let currentLang = 'en';
 
 const flags = {
-    'en': '🇺🇸',
-    'hu': '🇭🇺',
-    'de': '🇩🇪'
+    'en': 'https://flagcdn.com/w20/us.png',
+    'hu': 'https://flagcdn.com/w20/hu.png',
+    'de': 'https://flagcdn.com/w20/de.png'
 };
 const texts = {
     'en': 'EN',
@@ -33,7 +33,7 @@ function updateDropdown(lang) {
     const flagEl = document.getElementById('current-lang-flag');
     const textEl = document.getElementById('current-lang-text');
     if (flagEl && textEl) {
-        flagEl.className = `fi ${flags[lang] || flags['en']}`;
+        flagEl.src = flags[lang] || flags['en'];
         textEl.textContent = texts[lang] || texts['en'];
     }
 }
