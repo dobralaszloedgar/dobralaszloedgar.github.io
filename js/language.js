@@ -33,7 +33,7 @@ function updateDropdown(lang) {
     const flagEl = document.getElementById('current-lang-flag');
     const textEl = document.getElementById('current-lang-text');
     if (flagEl && textEl) {
-        flagEl.textContent = flags[lang] || flags['en'];
+        flagEl.className = `fi ${flags[lang] || flags['en']}`;
         textEl.textContent = texts[lang] || texts['en'];
     }
 }
