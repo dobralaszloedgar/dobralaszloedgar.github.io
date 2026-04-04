@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xhtml="http://www.w3.org/1999/xhtml"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -8,11 +9,39 @@
 
 <url>
   <loc>https://ledobra.com/</loc>
-  <lastmod>2026-03-31T18:30:00+00:00</lastmod>
+  <lastmod>2026-04-03T12:00:00+00:00</lastmod>
 </url>
 <url>
-  <loc>https://ledobra.com/Resume_General.pdf</loc>
-  <lastmod>2026-03-31T18:30:00+00:00</lastmod>
+  <loc>https://ledobra.com/en/</loc>
+  <lastmod>2026-04-03T12:00:00+00:00</lastmod>
+  <xhtml:link rel="alternate" hreflang="hu" href="https://ledobra.com/hu/"/>
+  <xhtml:link rel="alternate" hreflang="de" href="https://ledobra.com/de/"/>
+  <xhtml:link rel="alternate" hreflang="en" href="https://ledobra.com/en/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://ledobra.com/en/"/>
+</url>
+<url>
+  <loc>https://ledobra.com/hu/</loc>
+  <lastmod>2026-04-03T12:00:00+00:00</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://ledobra.com/en/"/>
+  <xhtml:link rel="alternate" hreflang="de" href="https://ledobra.com/de/"/>
+  <xhtml:link rel="alternate" hreflang="hu" href="https://ledobra.com/hu/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://ledobra.com/en/"/>
+</url>
+<url>
+  <loc>https://ledobra.com/de/</loc>
+  <lastmod>2026-04-03T12:00:00+00:00</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://ledobra.com/en/"/>
+  <xhtml:link rel="alternate" hreflang="hu" href="https://ledobra.com/hu/"/>
+  <xhtml:link rel="alternate" hreflang="de" href="https://ledobra.com/de/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://ledobra.com/en/"/>
+</url>
+<url>
+  <loc>https://ledobra.com/doc/Resume_General.pdf</loc>
+  <lastmod>2026-04-03T12:00:00+00:00</lastmod>
+</url>
+<url>
+  <loc>https://ledobra.com/doc/Resume_General_HU.pdf</loc>
+  <lastmod>2026-04-03T12:00:00+00:00</lastmod>
 </url>
 
 </urlset>
