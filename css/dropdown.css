@@ -1,0 +1,50 @@
+/* Language Selector Dropdown */
+.custom-select {
+    position: relative;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: white;
+    user-select: none;
+}
+.select-selected {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+.select-selected:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+.select-items {
+    position: absolute;
+    background-color: var(--primary);
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-top: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.select-items div {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.select-items div:hover {
+    background-color: var(--accent);
+}
+.select-hide {
+    display: none;
+}
