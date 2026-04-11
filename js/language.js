@@ -14,8 +14,8 @@ const texts = {
 
 // Check if we are inside a subdirectory like /en/ or /hu/
 const pathSegments = window.location.pathname.split('/').filter(Boolean);
-const lastSegment = pathSegments[pathSegments.length - 1];
-const inSubdir = ['en', 'hu', 'de'].includes(lastSegment);
+const langSegment = pathSegments.find(segment => ['en', 'hu', 'de'].includes(segment));
+const inSubdir = !!langSegment;
 const prefix = inSubdir ? '../' : '';
 
 async function setLanguage(lang) {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let initialLang = 'en';
     
     if (inSubdir) {
-        initialLang = lastSegment;
+        initialLang = langSegment;
     } else {
         // If we are at the root, redirect based on location
         if (window.location.protocol !== 'file:') {
