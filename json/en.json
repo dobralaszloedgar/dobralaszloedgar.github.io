@@ -50,7 +50,8 @@
   "resume_download": "Download Resume (PDF)",
   "contact_title": "Contact Me",
   "contact_email": "edobra2@illinois.edu",
-  "contact_phone": "+1 (217) 607-3670",
+  "contact_phone_us": "+1 (217) 607-3670 (US Only)",
+  "contact_phone_ro": "+40 (742) 222-884",
   "contact_linkedin": "LinkedIn",
   "contact_github": "GitHub",
   "footer_copyright": "&copy; 2026 Laszlo Edgar Dobra. All rights reserved."

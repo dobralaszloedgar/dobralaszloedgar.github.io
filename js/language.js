@@ -41,7 +41,14 @@ function updateDropdown(lang) {
 function updateResumeLink(lang) {
     const resumeIframe = document.querySelector('.resume-viewer iframe');
     const resumeLink = document.querySelector('.resume-links a.btn[target="_blank"][href*="Resume"]');
-    const pdfPath = lang === 'hu' ? prefix + 'doc/Laszlo_Edgar_Dobra_Resume_HU.pdf' : prefix + 'doc/Laszlo_Edgar_Dobra_Resume.pdf';
+    
+    let pdfFile = 'Laszlo_Edgar_Dobra_Resume.pdf';
+    if (lang === 'hu') {
+        pdfFile = 'Laszlo_Edgar_Dobra_Resume_HU.pdf';
+    } else if (lang === 'de') {
+        pdfFile = 'Laszlo_Edgar_Dobra_Resume_EN.pdf';
+    }
+    const pdfPath = prefix + 'doc/' + pdfFile;
     
     if (resumeIframe) {
         resumeIframe.src = pdfPath;
