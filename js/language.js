@@ -41,7 +41,7 @@ function updateDropdown(lang) {
 function updateResumeLink(lang) {
     const resumeIframe = document.querySelector('.resume-viewer iframe');
     const resumeLink = document.querySelector('.resume-links a.btn[target="_blank"][href*="Resume"]');
-    const pdfPath = lang === 'hu' ? prefix + 'doc/Resume_General_HU.pdf' : prefix + 'doc/Resume_General.pdf';
+    const pdfPath = lang === 'hu' ? prefix + 'doc/Laszlo_Edgar_Dobra_Resume_HU.pdf' : prefix + 'doc/Laszlo_Edgar_Dobra_Resume.pdf';
     
     if (resumeIframe) {
         resumeIframe.src = pdfPath;
