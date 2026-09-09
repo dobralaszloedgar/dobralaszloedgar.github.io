@@ -3,16 +3,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
     if (menuToggle && navLinks) {
+        const setMenuOpen = (open) => {
+            navLinks.classList.toggle('active', open);
+            menuToggle.setAttribute('aria-expanded', String(open));
+        };
         menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            setMenuOpen(!navLinks.classList.contains('active'));
         });
         
         // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+                setMenuOpen(false);
             });
         });
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('nav')) setMenuOpen(false);
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                setMenuOpen(false);
+                menuToggle.focus();
+            }
+        });
+        matchMedia('(max-width: 1024px)').addEventListener('change', () => setMenuOpen(false));
     }
 
     // Observer for animations
@@ -24,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.15
+        threshold: 0,
+        rootMargin: '0px 0px -32px 0px'
     });
     observerElements.forEach(el => observer.observe(el));
 
@@ -35,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
-                    behavior: 'smooth',
+                    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
                     block: 'start'
                 });
             }
@@ -46,8 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const posterGallery = document.getElementById('poster-gallery');
     let viewer = null;
     let targetSection = null;
+    // Native image links remain usable if the external viewer is unavailable.
+    function createViewer(gallery, options) {
+        if (typeof Viewer === 'undefined') return null;
+        const galleryViewer = new Viewer(gallery, {
+            ...options,
+            transition: !matchMedia('(prefers-reduced-motion: reduce)').matches,
+        });
+        gallery.addEventListener('click', (event) => {
+            if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            if (gallery === posterGallery) targetSection = null;
+            galleryViewer.show();
+        });
+        return galleryViewer;
+    }
     if (posterGallery) {
-        viewer = new Viewer(posterGallery, {
+        viewer = createViewer(posterGallery, {
             inline: false,
             viewed() {
                 if (targetSection && sectionCoords[targetSection]) {
@@ -70,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             toolbar: {
-                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+                zoomIn: true, zoomOut: true, oneToOne: true, reset: true, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
             },
             title: true, navbar: false, tooltip: true, movable: true, zoomable: true, rotatable: true, scalable: true, transition: true, fullscreen: true, keyboard: true, zoomRatio: 0.1, minZoomRatio: 0.1, maxZoomRatio: 5,
         });
@@ -79,10 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // GPC viewer logic
     const gpcGallery = document.getElementById('gpc-gallery');
     if (gpcGallery) {
-        new Viewer(gpcGallery, {
+        createViewer(gpcGallery, {
             inline: false,
             toolbar: {
-                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+                zoomIn: true, zoomOut: true, oneToOne: true, reset: true, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
             },
             title: true, navbar: false, tooltip: true, movable: true, zoomable: true, rotatable: true, scalable: true, transition: true, fullscreen: true, keyboard: true, zoomRatio: 0.1, minZoomRatio: 0.1, maxZoomRatio: 5,
         });
@@ -91,11 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // MEMS viewer logic
     const pressureSensorGallery = document.getElementById('pressure-sensor-gallery');
     if (pressureSensorGallery) {
-        new Viewer(pressureSensorGallery, {
+        createViewer(pressureSensorGallery, {
             inline: false,
             url: (image) => image.dataset.original || image.src,
             toolbar: {
-                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+                zoomIn: true, zoomOut: true, oneToOne: true, reset: true, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
             },
             title: (image) => `${image.alt} - Diagram`,
             navbar: false,
@@ -115,11 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const microfluidicMixerGallery = document.getElementById('microfluidic-mixer-gallery');
     if (microfluidicMixerGallery) {
-        new Viewer(microfluidicMixerGallery, {
+        createViewer(microfluidicMixerGallery, {
             inline: false,
             url: (image) => image.dataset.original || image.src,
             toolbar: {
-                zoomIn: 4, zoomOut: 4, oneToOne: 4, reset: 4, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
+                zoomIn: true, zoomOut: true, oneToOne: true, reset: true, prev: false, play: false, next: false, rotateLeft: 4, rotateRight: 4, flipHorizontal: 4, flipVertical: 4,
             },
             title: (image) => `${image.alt} - Diagram`,
             navbar: false,
@@ -152,6 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (viewer) {
                 targetSection = section;
                 viewer.show();
+            } else if (posterGallery) {
+                window.location.href = posterGallery.href;
             }
         });
     });

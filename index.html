@@ -7,17 +7,17 @@
     <link type="image/png" sizes="16x16" rel="icon" href="images/icons8-resume-website-ios-17-outlined-16.png">
     <link type="image/png" sizes="32x32" rel="icon" href="images/icons8-resume-website-ios-17-outlined-32.png">
     <link type="image/png" sizes="96x96" rel="icon" href="images/icons8-resume-website-ios-17-outlined-96.png">
-    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/style.css?v=6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css">
 </head>
 <body>
     <nav>
         <div class="logo" data-translate="nav_name">Laszlo Edgar Dobra</div>
-        <div class="menu-toggle" id="mobile-menu">
-            <i class="fas fa-bars"></i>
-        </div>
-        <ul class="nav-links">
+        <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Menu" aria-controls="nav-links" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#about" data-translate="nav_about">About</a></li>
             <li><a href="#experience" data-translate="nav_experience">Experience</a></li>
             <li><a href="#projects" data-translate="nav_projects">Projects</a></li>
@@ -98,9 +98,9 @@
             <div class="card poster-card">
                 <h3 data-translate="gpc_title">GPC Deconvolution Tool</h3>
                 <p data-translate="gpc_description">Unlock insights from your polymer data. This tool deconvolutes complex gel permeation chromatograms, resolving overlapping peaks to reveal the true molecular weight distribution of your sample.</p>
-                <div class="poster-preview" id="gpc-gallery">
+                <a class="poster-preview" id="gpc-gallery" href="images/b850690fee59b9a72fe3ff5c163f7164eb3da1bc635fee06fc133cf2.png">
                     <img src="images/b850690fee59b9a72fe3ff5c163f7164eb3da1bc635fee06fc133cf2.png" alt="GPC Deconvolution Tool" class="poster-thumbnail" id="gpc-image">
-                </div>
+                </a>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="gpc_view_prompt">Click the graph for full interactive zoom and pan</em></p>
                 <a href="https://gaussian.streamlit.app/" class="project-link" target="_blank" data-translate="gpc_open_tool">Open Tool &rarr;</a>
             </div>
@@ -110,16 +110,16 @@
                 <div class="mems-container">
                     <div class="mems-item">
                         <h4 data-translate="mems_pressure_sensor">Pressure Sensor</h4>
-                        <div class="mems-image-container" id="pressure-sensor-gallery">
+                        <a class="mems-image-container" id="pressure-sensor-gallery" href="images/2b25285c-cac5-45d2-aff1-dd466e10a6f5.png">
                             <img src="images/20260329_211413.jpg" data-original="images/2b25285c-cac5-45d2-aff1-dd466e10a6f5.png" alt="Pressure Sensor" class="mems-image">
-                        </div>
+                        </a>
                         <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="mems_pressure_sensor_prompt">Click image to view diagram</em></p>
                     </div>
                     <div class="mems-item">
                         <h4 data-translate="mems_mixer">Microfluidic Mixer</h4>
-                        <div class="mems-image-container" id="microfluidic-mixer-gallery">
+                        <a class="mems-image-container" id="microfluidic-mixer-gallery" href="images/ebfd45ba-1c41-4285-9f2c-dafae9241d1f.png">
                             <img src="images/20260329_211402.jpg" data-original="images/ebfd45ba-1c41-4285-9f2c-dafae9241d1f.png" alt="Microfluidic Mixer" class="mems-image">
-                        </div>
+                        </a>
                         <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="mems_mixer_prompt">Click image to view diagram</em></p>
                     </div>
                 </div>
@@ -135,9 +135,9 @@
                     <button class="poster-btn" data-section="results" data-translate="poster_results">📊 Results & GPC Data</button>
                     <button class="poster-btn" data-section="future" data-translate="poster_future">🔮 Future Work</button>
                 </div>
-                <div class="poster-preview" id="poster-gallery">
+                <a class="poster-preview" id="poster-gallery" href="images/research-poster.jpg">
                     <img src="images/research-poster.jpg" alt="Research Poster" class="poster-thumbnail" id="poster-image">
-                </div>
+                </a>
                 <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="poster_view_prompt">Click the poster image for full interactive zoom and pan</em></p>
             </div>
         </div>
@@ -149,7 +149,7 @@
             <a href="doc/Laszlo_Edgar_Dobra_Resume.pdf" class="btn" target="_blank" data-translate="resume_download">Download Resume (PDF)</a>
         </div>
         <div class="resume-viewer">
-            <iframe src="doc/Laszlo_Edgar_Dobra_Resume.pdf" type="application/pdf"></iframe>
+            <iframe src="doc/Laszlo_Edgar_Dobra_Resume.pdf" type="application/pdf" title="Resume PDF" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -184,7 +184,7 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
-    <script src="js/script.js?v=6"></script>
+    <script src="js/script.js?v=7"></script>
     <script src="js/language.js"></script>
 </body>
 </html>
