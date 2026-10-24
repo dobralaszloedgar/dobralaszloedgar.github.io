@@ -118,6 +118,9 @@ nav {
 
 /* Sections & Layout */
 .section {
+    /* Paint content and solid section backgrounds above the decorative beads. */
+    position: relative;
+    z-index: 1;
     padding: 5rem 5%;
     max-width: 1200px;
     margin: 0 auto;
