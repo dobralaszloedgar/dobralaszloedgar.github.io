@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let resumeNearby = !('IntersectionObserver' in window);
         const loadResume = () => {
             if (!showResume.matches || !resumeNearby || !resumeFrame.dataset.src) return;
+            // IntersectionObserver already deferred this request; avoid a second native delay.
+            resumeFrame.loading = 'eager';
             resumeFrame.src = resumeFrame.dataset.src;
             delete resumeFrame.dataset.src;
         };
