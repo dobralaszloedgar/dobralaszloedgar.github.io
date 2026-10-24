@@ -3,188 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laszlo Edgar Dobra | Chemical Engineering</title>
+    <title>Dobra László Edgár | Vegyészmérnök</title>
     <link type="image/png" sizes="16x16" rel="icon" href="../images/icons8-resume-website-ios-17-outlined-16.png">
     <link type="image/png" sizes="32x32" rel="icon" href="../images/icons8-resume-website-ios-17-outlined-32.png">
     <link type="image/png" sizes="96x96" rel="icon" href="../images/icons8-resume-website-ios-17-outlined-96.png">
-    <link rel="stylesheet" href="../css/style.css?v=6">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css">
+    <meta name="description" content="Vegyészmérnök, Félvezető specializációval a University of Illinois Urbana-Champaign-en">
+    <meta name="theme-color" content="#03311C">
+    <link rel="canonical" href="https://ledobra.com/hu/">
+    <link rel="alternate" hreflang="en" href="https://ledobra.com/en/">
+    <link rel="alternate" hreflang="hu" href="https://ledobra.com/hu/">
+    <link rel="alternate" hreflang="de" href="https://ledobra.com/de/">
+    <link rel="alternate" hreflang="x-default" href="https://ledobra.com/">
+    <link rel="preload" href="../fonts/epilogue-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../css/fonts.css?v=1">
+    <link rel="stylesheet" href="../css/style.css?v=7">
+    <link rel="stylesheet" href="../css/dropdown.css?v=2">
 </head>
 <body>
-    <nav>
-        <div class="logo" data-translate="nav_name">Laszlo Edgar Dobra</div>
-        <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Menu" aria-controls="nav-links" aria-expanded="false">
-            <i class="fas fa-bars" aria-hidden="true"></i>
+    <nav aria-label="Fő navigáció">
+        <div class="logo" data-translate="nav_name">Dobra László Edgár</div>
+        <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Menü" aria-controls="nav-links" aria-expanded="false">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#bars"></use></svg>
         </button>
         <ul class="nav-links" id="nav-links">
-            <li><a href="#about" data-translate="nav_about">About</a></li>
-            <li><a href="#experience" data-translate="nav_experience">Experience</a></li>
-            <li><a href="#projects" data-translate="nav_projects">Projects</a></li>
-            <li><a href="#resume" data-translate="nav_resume">Resume</a></li>
-            <li><a href="#contact" data-translate="nav_contact">Contact</a></li>
+            <li><a href="#about" data-translate="nav_about">Rólam</a></li>
+            <li><a href="#experience" data-translate="nav_experience">Tapasztalat</a></li>
+            <li><a href="#projects" data-translate="nav_projects">Projektek</a></li>
+            <li><a href="#resume" data-translate="nav_resume">Önéletrajz</a></li>
+            <li><a href="#contact" data-translate="nav_contact">Kapcsolat</a></li>
         </ul>
         <div class="custom-select">
-            <div class="select-selected">
-                <img id="current-lang-flag" src="https://flagcdn.com/w20/us.png" width="20" alt="Flag"> <span id="current-lang-text">EN</span> <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="select-items select-hide">
-                <div data-lang="en"><img src="https://flagcdn.com/w20/us.png" width="20" alt="English"> EN</div>
-                <div data-lang="hu"><img src="https://flagcdn.com/w20/hu.png" width="20" alt="Magyar"> HU</div>
-                <div data-lang="de"><img src="https://flagcdn.com/w20/de.png" width="20" alt="Deutsch"> DE</div>
+            <button class="select-selected" type="button" aria-label="Nyelv kiválasztása" aria-controls="language-options" aria-expanded="false">
+                <img id="current-lang-flag" src="../images/flags/hu.png" width="20" height="10" alt=""> <span id="current-lang-text">HU</span> <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#chevron-down"></use></svg>
+            </button>
+            <div class="select-items select-hide" id="language-options">
+                <a href="../en/" data-lang="en" lang="en" hreflang="en" aria-label="English"><img src="../images/flags/us.png" width="20" height="10" alt=""> EN</a>
+                <a href="../hu/" data-lang="hu" aria-current="page" lang="hu" hreflang="hu" aria-label="Magyar"><img src="../images/flags/hu.png" width="20" height="10" alt=""> HU</a>
+                <a href="../de/" data-lang="de" lang="de" hreflang="de" aria-label="Deutsch"><img src="../images/flags/de.png" width="20" height="12" alt=""> DE</a>
             </div>
         </div>
     </nav>
 
     <header id="home" class="hero section">
         <div class="hero-content">
-            <div class="hero-text animate-on-scroll">
-                <h1 class="swoosh-in" data-translate="hero_greeting">Hi, I'm Edgar</h1>
-                <p data-translate="hero_description">Chemical Engineering Student & Semiconductor Engineering Minor at the University of Illinois Urbana-Champaign</p>
+            <div class="hero-text">
+                <h1 data-translate="hero_greeting">Üdvözlöm, Edgár vagyok</h1>
+                <p data-translate="hero_description">Vegyészmérnök, Félvezető specializációval a University of Illinois Urbana-Champaign-en</p>
                 <div class="resume-links" style="margin-top: 2rem;">
-                    <a href="#projects" class="btn" data-translate="hero_view_work">View My Work</a>
-                    <a href="https://www.linkedin.com/in/dobralaszloedgar/" class="btn btn-outline" target="_blank" data-translate="hero_linkedin">LinkedIn</a>
+                    <a href="#projects" class="btn" data-translate="hero_view_work">Projektjeim Megtekintése</a>
+                    <a href="https://www.linkedin.com/in/dobralaszloedgar/" class="btn btn-outline" target="_blank" rel="noopener" data-translate="hero_linkedin">LinkedIn</a>
                 </div>
             </div>
             <div class="portrait-container">
-                <img src="../images/14921.jpg" alt="Laszlo Edgar Dobra" class="portrait-image">
+                <img src="../images/optimized/portrait-360.webp" srcset="../images/optimized/portrait-360.webp 360w, ../images/optimized/portrait-720.webp 720w" sizes="(max-width: 768px) 220px, 300px" width="360" height="450" decoding="async" fetchpriority="high" alt="Laszlo Edgar Dobra" class="portrait-image">
             </div>
         </div>
     </header>
 
-    <div id="liquid-flow-container">
+    <div id="liquid-flow-container" aria-hidden="true">
         <canvas id="liquid-flow-canvas"></canvas>
     </div>
 
     <section id="about" class="section animate-on-scroll">
-        <h2 data-translate="about_title">About Me</h2>
-        <p data-translate="about_me">I'm a Chemical Engineering student at UIUC and I'm genuinely obsessed with the world of semiconductors and process automation. I love using Python to model complex systems and finding ways to turn molecular science into high-tech manufacturing. When I'm not working on a project, I'm almost certainly at my espresso machine trying to dial in the perfect shot. I'm just really excited to help build the next major project and solve problems along the way!</p>
+        <h2 data-translate="about_title">Rólam</h2>
+        <p data-translate="about_me">Vegyészmérnök hallgató vagyok az UIUC-n, és a félvezetők valamint technológiai innováció területén szeretnék elhelyezkedni. Pythont használok komplex rendszerek modellezésére és arra, hogy a molekuláris tudományt csúcstechnológiás gyártássá alakítsam. Amikor éppen nem egy projekten dolgozom, szinte biztosan egy tökéletes eszpresszót próbálok lefőzni kávégépemmel. Szeretnék segíteni a következő nagy projekt felépítésében és a problémák megoldásában!</p>
     </section>
 
     <section id="experience" class="section bg-light animate-on-scroll">
-        <h2 data-translate="experience_title">Experience</h2>
+        <h2 data-translate="experience_title">Tapasztalat</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <h3 data-translate="experience_rustoleum_title">R&D Intern | Rust-Oleum</h3>
-                <p class="date" data-translate="experience_rustoleum_date">June 2025 – August 2025</p>
+                <p class="date" data-translate="experience_rustoleum_date">2025. június – 2025. augusztus</p>
                 <ul>
-                    <li data-translate="experience_rustoleum_item1">Spearheaded formulation of the company's first silicate-based waterborne paint for the global architectural mineral coatings market.</li>
-                    <li data-translate="experience_rustoleum_item2">Engineered a 90% reduction in product viscosity via advanced rheological analysis, enabling seamless scale-up.</li>
-                    <li data-translate="experience_rustoleum_item3">Modeled critical ionic interactions within complex coating systems to resolve curing anomalies and boost stability.</li>
+                    <li data-translate="experience_rustoleum_item1">Vezettem a vállalat első szilikátbázisú vízhigítású festékének kifejlesztését a globális építészeti ásványi bevonatok (mineral coatings) piacára.</li>
+                    <li data-translate="experience_rustoleum_item2">Fejlett reológiai elemzéssel 90%-kal csökkentettem a termék viszkozitását, lehetővé téve a zökkenőmentes ipari scale-up-ot.</li>
+                    <li data-translate="experience_rustoleum_item3">Ionos kötéseket modelleztem komplex bevonatrendszerekben a kötési anomáliák megoldása és a stabilitás növelése érdekében.</li>
                 </ul>
             </div>
             <div class="timeline-item">
-                <h3 data-translate="experience_guironnet_title">Research Assistant | Guironnet Research Group</h3>
-                <p class="date" data-translate="experience_guironnet_date">October 2023 – Present</p>
+                <h3 data-translate="experience_guironnet_title">Kutatómérnök | Guironnet Group</h3>
+                <p class="date" data-translate="experience_guironnet_date">2023. október – Jelen</p>
                 <ul>
-                    <li data-translate="experience_guironnet_item1">Designed liquid handler robotics for automated high-throughput synthesis of 100+ precision polymers.</li>
-                    <li data-translate="experience_guironnet_item2">Automated air- and moisture-sensitive polymerizations using complex glovebox and vacuum systems.</li>
-                    <li data-translate="experience_guironnet_item3">Developed a GPC deconvolution algorithm and deployed it as a web app, accelerating data analysis by 50x.</li>
+                    <li data-translate="experience_guironnet_item1">Folyadékkezelő robotokat terveztem több mint 100 precíziós polimer automatizált, szimultán szintéziséhez.</li>
+                    <li data-translate="experience_guironnet_item2">Építettem egy kesztyűdobozt vákuumrendszerek és nitrogén segítségével, mely lehetővé tette a levegő- és nedvességérzékeny polimerizációkat</li>
+                    <li data-translate="experience_guironnet_item3">Kifejlesztettem egy GPC dekonvolúciós algoritmust, és webes alkalmazást, amellyel 50-szeresére gyorsítottam az adatelemzést.</li>
                 </ul>
             </div>
             <div class="timeline-item">
                 <h3 data-translate="experience_ambassador_title">Student Ambassador | School of Chemical Sciences Career Services</h3>
-                <p class="date" data-translate="experience_ambassador_date">August 2024 – March 2025</p>
+                <p class="date" data-translate="experience_ambassador_date">2024. augusztus – 2025. március</p>
                 <ul>
-                    <li data-translate="experience_ambassador_item1">Facilitated 500+ student-employer interactions and spearheaded targeted social media growth, significantly elevating digital engagement and brand visibility among top-tier employers.</li>
+                    <li data-translate="experience_ambassador_item1">Több mint 500 diák-munkaadó interakciót segítettem elő rendezvényszervezéssel, és célzott közösségi média növekedést vezettem, jelentősen növelve a digitális követők számát és az egyetem ismeretségét a legjobb munkaadók körében.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="projects" class="section animate-on-scroll">
-        <h2 data-translate="projects_title">Featured Projects</h2>
+        <h2 data-translate="projects_title">Kiemelt Projektek</h2>
         <div class="grid">
             <div class="card poster-card">
-                <h3 data-translate="gpc_title">GPC Deconvolution Tool</h3>
-                <p data-translate="gpc_description">Unlock insights from your polymer data. This tool deconvolutes complex gel permeation chromatograms, resolving overlapping peaks to reveal the true molecular weight distribution of your sample.</p>
+                <h3 data-translate="gpc_title">GPC Dekonvolúció</h3>
+                <p data-translate="gpc_description">Fedezze fel a polimer adatokban rejlő lehetőségeket. Ez az eszköz elkülöníti a komplex GPC kromatogramokat, lebontva az átfedő Gaussian csúcsokat, hogy felfedje a minta valódi molekulatömeg-eloszlását.</p>
                 <a class="poster-preview" id="gpc-gallery" href="../images/b850690fee59b9a72fe3ff5c163f7164eb3da1bc635fee06fc133cf2.png">
-                    <img src="../images/b850690fee59b9a72fe3ff5c163f7164eb3da1bc635fee06fc133cf2.png" alt="GPC Deconvolution Tool" class="poster-thumbnail" id="gpc-image">
+                    <img src="../images/optimized/gpc-480.webp" srcset="../images/optimized/gpc-480.webp 480w, ../images/optimized/gpc-960.webp 960w" sizes="(max-width: 702px) 90vw, (max-width: 1072px) 45vw, 350px" width="480" height="293" decoding="async" loading="lazy" data-original="../images/b850690fee59b9a72fe3ff5c163f7164eb3da1bc635fee06fc133cf2.png" alt="GPC Deconvolution Tool" class="poster-thumbnail" id="gpc-image">
                 </a>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="gpc_view_prompt">Click the graph for full interactive zoom and pan</em></p>
-                <a href="https://gaussian.streamlit.app/" class="project-link" target="_blank" data-translate="gpc_open_tool">Open Tool &rarr;</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="gpc_view_prompt">Kattintson a grafikonra a teljes interaktív megtekintéshez</em></p>
+                <a href="https://gaussian.streamlit.app/" class="project-link" target="_blank" rel="noopener" data-translate="gpc_open_tool">Eszköz Megnyitása &rarr;</a>
             </div>
             <div class="card">
-                <h3 data-translate="mems_title">MEMS and NEMS Fabrication</h3>
-                <p data-translate="mems_description">Designed and fabricated MEMS devices, including pressure sensors and microfluidic mixers, from CAD to cleanroom.</p>
+                <h3 data-translate="mems_title">MEMS és NEMS Gyártás</h3>
+                <p data-translate="mems_description">MEMS eszközöket, többek között nyomásérzékelőket és mikrofluidikai keverőket terveztem és gyártottam, a CAD-tól a Cleanroom-ig.</p>
                 <div class="mems-container">
                     <div class="mems-item">
-                        <h4 data-translate="mems_pressure_sensor">Pressure Sensor</h4>
+                        <h4 data-translate="mems_pressure_sensor">Nyomásérzékelő</h4>
                         <a class="mems-image-container" id="pressure-sensor-gallery" href="../images/2b25285c-cac5-45d2-aff1-dd466e10a6f5.png">
-                            <img src="../images/20260329_211413.jpg" data-original="../images/2b25285c-cac5-45d2-aff1-dd466e10a6f5.png" alt="Pressure Sensor" class="mems-image">
+                            <img src="../images/optimized/pressure-sensor-480.webp" srcset="../images/optimized/pressure-sensor-480.webp 480w, ../images/optimized/pressure-sensor-960.webp 960w" sizes="(max-width: 702px) 90vw, (max-width: 1072px) 45vw, 350px" width="480" height="480" decoding="async" loading="lazy" data-original="../images/2b25285c-cac5-45d2-aff1-dd466e10a6f5.png" alt="Pressure Sensor" class="mems-image">
                         </a>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="mems_pressure_sensor_prompt">Click image to view diagram</em></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="mems_pressure_sensor_prompt">Kattintson a képre a diagram megtekintéséhez</em></p>
                     </div>
                     <div class="mems-item">
-                        <h4 data-translate="mems_mixer">Microfluidic Mixer</h4>
+                        <h4 data-translate="mems_mixer">Mikrofluidikai Keverő</h4>
                         <a class="mems-image-container" id="microfluidic-mixer-gallery" href="../images/ebfd45ba-1c41-4285-9f2c-dafae9241d1f.png">
-                            <img src="../images/20260329_211402.jpg" data-original="../images/ebfd45ba-1c41-4285-9f2c-dafae9241d1f.png" alt="Microfluidic Mixer" class="mems-image">
+                            <img src="../images/optimized/microfluidic-mixer-480.webp" srcset="../images/optimized/microfluidic-mixer-480.webp 480w, ../images/optimized/microfluidic-mixer-960.webp 960w" sizes="(max-width: 702px) 90vw, (max-width: 1072px) 45vw, 350px" width="480" height="473" decoding="async" loading="lazy" data-original="../images/ebfd45ba-1c41-4285-9f2c-dafae9241d1f.png" alt="Microfluidic Mixer" class="mems-image">
                         </a>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="mems_mixer_prompt">Click image to view diagram</em></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="mems_mixer_prompt">Kattintson a képre a diagram megtekintéséhez</em></p>
                     </div>
                 </div>
             </div>
             <div class="card poster-card">
-                <h3 data-translate="poster_title">Research Poster - Undergraduate Research</h3>
+                <h3 data-translate="poster_title">Kutatási Poszter - Egyetemi Kutatás</h3>
                 <p><strong data-translate="poster_subtitle">Accelerating Polymer Discovery with High-Throughput Automated Bottlebrush Block Copolymer Synthesis</strong></p>
-                <p data-translate="poster_prompt">Click on any section below to zoom into that part of the poster:</p>
+                <p data-translate="poster_prompt">Kattintson az alábbi szakaszok bármelyikére a poszter adott részének nagyításához:</p>
                 <div class="poster-sections">
-                    <button class="poster-btn" data-section="introduction" data-translate="poster_intro">📚 Introduction</button>
-                    <button class="poster-btn" data-section="methods" data-translate="poster_methods">🔬 Methods</button>
-                    <button class="poster-btn" data-section="automation" data-translate="poster_automation">🤖 Automation (OT-2)</button>
-                    <button class="poster-btn" data-section="results" data-translate="poster_results">📊 Results & GPC Data</button>
-                    <button class="poster-btn" data-section="future" data-translate="poster_future">🔮 Future Work</button>
+                    <button type="button" class="poster-btn" data-section="introduction" data-translate="poster_intro">📚 Bevezetés</button>
+                    <button type="button" class="poster-btn" data-section="methods" data-translate="poster_methods">🔬 Módszerek</button>
+                    <button type="button" class="poster-btn" data-section="automation" data-translate="poster_automation">🤖 Automatizálás (OT-2)</button>
+                    <button type="button" class="poster-btn" data-section="results" data-translate="poster_results">📊 Eredmények és GPC Adatok</button>
+                    <button type="button" class="poster-btn" data-section="future" data-translate="poster_future">🔮 Kutatás Folytatása</button>
                 </div>
                 <a class="poster-preview" id="poster-gallery" href="../images/research-poster.jpg">
-                    <img src="../images/research-poster.jpg" alt="Research Poster" class="poster-thumbnail" id="poster-image">
+                    <img src="../images/optimized/research-poster-480.webp" srcset="../images/optimized/research-poster-480.webp 480w, ../images/optimized/research-poster-960.webp 960w" sizes="(max-width: 702px) 90vw, (max-width: 1072px) 45vw, 350px" width="480" height="360" decoding="async" loading="lazy" data-original="../images/research-poster.jpg" alt="Research Poster" class="poster-thumbnail" id="poster-image">
                 </a>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="poster_view_prompt">Click the poster image for full interactive zoom and pan</em></p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary);"><em data-translate="poster_view_prompt">Kattintson a poszter képére a teljes interaktív megtekintéshez</em></p>
             </div>
         </div>
     </section>
 
     <section id="resume" class="section bg-light animate-on-scroll">
-        <h2 data-translate="resume_title">Resume</h2>
+        <h2 data-translate="resume_title">Önéletrajz</h2>
         <div class="resume-links">
-            <a href="../doc/Laszlo_Edgar_Dobra_Resume.pdf" class="btn" target="_blank" data-translate="resume_download">Download Resume (PDF)</a>
+            <a href="../doc/Laszlo_Edgar_Dobra_Resume_HU.pdf" class="btn" target="_blank" rel="noopener" data-translate="resume_download">Önéletrajz Letöltése (PDF)</a>
         </div>
         <div class="resume-viewer">
-            <iframe src="../doc/Laszlo_Edgar_Dobra_Resume.pdf" type="application/pdf" title="Resume PDF" loading="lazy"></iframe>
+            <iframe data-src="../doc/Laszlo_Edgar_Dobra_Resume_HU.pdf" type="application/pdf" title="Resume PDF" loading="lazy"></iframe>
         </div>
     </section>
 
     <section id="contact" class="section animate-on-scroll">
-        <h2 data-translate="contact_title">Contact Me</h2>
+        <h2 data-translate="contact_title">Kapcsolat</h2>
         <div class="contact-container">
             <div class="contact-item">
-                <i class="fas fa-envelope"></i>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#envelope"></use></svg>
                 <a href="mailto:edobra2@illinois.edu" class="contact-link" data-translate="contact_email">edobra2@illinois.edu</a>
             </div>
             <div class="contact-item">
-                <i class="fas fa-phone"></i>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#phone"></use></svg>
                 <a href="tel:+40742222884" class="contact-link" data-translate="contact_phone_ro">+40 (742) 222-884</a>
             </div>
             <div class="contact-item">
-                <i class="fas fa-phone"></i>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#phone"></use></svg>
                 <a href="tel:+12176073670" class="contact-link" data-translate="contact_phone_us">+1 (217) 607-3670 (US Only)</a>
             </div>
             <div class="contact-item">
-                <i class="fab fa-linkedin"></i>
-                <a href="https://www.linkedin.com/in/dobralaszloedgar/" target="_blank" class="contact-link" data-translate="contact_linkedin">LinkedIn</a>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#linkedin"></use></svg>
+                <a href="https://www.linkedin.com/in/dobralaszloedgar/" target="_blank" rel="noopener" class="contact-link" data-translate="contact_linkedin">LinkedIn</a>
             </div>
             <div class="contact-item">
-                <i class="fab fa-github"></i>
-                <a href="https://github.com/dobralaszloedgar" target="_blank" class="contact-link" data-translate="contact_github">GitHub</a>
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="../images/icons.svg#github"></use></svg>
+                <a href="https://github.com/dobralaszloedgar" target="_blank" rel="noopener" class="contact-link" data-translate="contact_github">GitHub</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p data-translate="footer_copyright">&copy; 2026 Laszlo Edgar Dobra. All rights reserved.</p>
+        <p data-translate="footer_copyright">&copy; 2026 Dobra László Edgár. Minden jog fenntartva.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
-    <script src="../js/script.js?v=7"></script>
-    <script src="../js/language.js"></script>
+    <script src="../js/script.js?v=8" defer></script>
+    <script src="../js/language.js?v=2" defer></script>
 </body>
 </html>

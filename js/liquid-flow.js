@@ -4,6 +4,7 @@ export function startLiquidFlow() {
     const container = document.getElementById('liquid-flow-container');
     const canvas = document.getElementById('liquid-flow-canvas');
     const desktop = matchMedia('(min-width: 1025px)');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
     renderer.setClearColor(0x000000, 0);
     const scene = new THREE.Scene();
@@ -178,7 +179,7 @@ export function startLiquidFlow() {
     function sync() {
         cancelAnimationFrame(frame);
         previous = accumulator = 0;
-        if (!disposed && desktop.matches && visible && !document.hidden && !contextLost) frame = requestAnimationFrame(animate);
+        if (!disposed && desktop.matches && !reducedMotion.matches && visible && !document.hidden && !contextLost) frame = requestAnimationFrame(animate);
     }
     function resize() { layout(); sync(); }
     function updatePointer() {
@@ -204,6 +205,7 @@ export function startLiquidFlow() {
     window.addEventListener('resize', resize);
     document.addEventListener('visibilitychange', sync);
     desktop.addEventListener('change', resize);
+    reducedMotion.addEventListener('change', sync);
     const visibility = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); });
     const sizing = new ResizeObserver(layout);
     visibility.observe(container);
@@ -218,6 +220,7 @@ export function startLiquidFlow() {
         window.removeEventListener('scroll', scroll); window.removeEventListener('resize', resize);
         window.removeEventListener('pageshow', resize); window.removeEventListener('pagehide', pageHide);
         document.removeEventListener('visibilitychange', sync); desktop.removeEventListener('change', resize);
+        reducedMotion.removeEventListener('change', sync);
         window.removeEventListener('pointermove', pointer, true);
         document.removeEventListener('pointerleave', leave); window.removeEventListener('blur', leave);
         geometry.dispose(); material.dispose(); renderer.dispose();

@@ -21,3 +21,33 @@ This repository contains the source code for my interactive portfolio, which fea
 * HTML5 & CSS3
 * JavaScript (Three.js for simulations)
 
+## Local preview and maintenance
+
+No package installation or build step is needed to serve the site:
+
+```sh
+python -m http.server 8765 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:8765/en/` (or `/hu/`, `/de/`). GitHub Pages serves these same static files from `main`.
+
+Shared page markup is maintained in `en/index.html`; translated text remains in `json/en.json`, `json/hu.json`, and `json/de.json`. After changing the markup or translation files, sync the three HTML pages:
+
+```sh
+python scripts/update-translations.py
+python scripts/update-translations.py --check
+node --check js/script.js
+node --check js/language.js
+node --check js/liquid-flow.js
+```
+
+Translations are written into the HTML so each language appears immediately, including without JavaScript. The root page redirects to the browser's language and offers language links as a fallback.
+
+## Performance and colors
+
+The existing green palette uses solid surfaces: `--bg` for the page, `--bg-light` for the hero, and `--surface` for cards and alternating sections. Text, buttons, and navigation use the existing dark greens. Navigation hover and focus colors remain readable against the dark header.
+
+Responsive WebP previews in `images/optimized/` replace 5.73 MB of inline originals with at most 408 KB (93% fewer image bytes). The portrait has high loading priority; project images are lazy-loaded with dimensions reserved to avoid layout shifts. Original gallery files remain available through normal links and load when opened in the viewer.
+
+Fonts (Epilogue and Be Vietnam Pro, Latin and Latin Extended), flags, and SVG icons are served locally. Font licenses are included in `fonts/`. Viewer.js 1.11.6 and its MIT license are in `js/vendor/`; its JavaScript and CSS load on the first gallery interaction. The desktop PDF embed loads only near the resume section; mobile visitors use the download link. The liquid simulation loads near visible content on desktop, skips reduced-motion and reduced-data visits, and pauses when hidden or reduced motion is enabled.
+
