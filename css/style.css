@@ -1,15 +1,15 @@
 /* Base Styles & Typography */
 :root {
-    --primary: #03311C;
-    --secondary: #05472A;
-    --accent: #097343;
-    --accent-light: #088C59;
-    --text: #055437;
-    --bg: #F8F9FA;
-    --bg-light: #E3EEE6;
-    --surface: #E8F2EB;
-    --nav-highlight: #B9E2C8;
-    --dark-green: #063D25;
+    --primary: #12382B;
+    --secondary: #315C46;
+    --accent: #256447;
+    --accent-light: #4E7D5D;
+    --text: #244E3B;
+    --bg: #F1F2EC;
+    --bg-light: #B7CBB6;
+    --surface: #D1DFCC;
+    --nav-highlight: #D7E5CE;
+    --dark-green: #1B4B35;
 }
 
 html, body {
@@ -27,7 +27,7 @@ button {
 }
 
 a:focus-visible, button:focus-visible {
-    outline: 3px solid var(--accent-light);
+    outline: 3px solid var(--accent);
     outline-offset: 4px;
 }
 

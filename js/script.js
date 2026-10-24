@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Keep the original simulation, without loading WebGL on phones or reduced-data/motion visits.
+    // Keep the bead animation off phones and reduced-data/motion visits.
     const desktop = matchMedia('(min-width: 1025px)');
     let flowStarted = false;
     let flowNearby = !('IntersectionObserver' in window);
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             !flowNearby || document.hidden || flowStarted || !document.getElementById('liquid-flow-canvas')) return;
         flowStarted = true;
         try {
-            const { startLiquidFlow } = await import(new URL('liquid-flow.js?v=3', scriptURL).href);
+            const { startLiquidFlow } = await import(new URL('liquid-flow.js?v=4', scriptURL).href);
             startLiquidFlow();
         } catch (error) {
             flowStarted = false;

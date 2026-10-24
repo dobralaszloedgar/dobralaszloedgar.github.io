@@ -19,7 +19,7 @@ This repository contains the source code for my interactive portfolio, which fea
 
 ## Tech Stack
 * HTML5 & CSS3
-* JavaScript (Three.js for simulations)
+* JavaScript and Canvas 2D for the bead simulation
 
 ## Local preview and maintenance
 
@@ -39,15 +39,20 @@ python scripts/update-translations.py --check
 node --check js/script.js
 node --check js/language.js
 node --check js/liquid-flow.js
+node --test tests/liquid-flow.test.mjs tests/liquid-flow-lifecycle.test.mjs
 ```
 
 Translations are written into the HTML so each language appears immediately, including without JavaScript. The root page redirects to the browser's language and offers language links as a fallback.
 
 ## Performance and colors
 
-The existing green palette uses solid surfaces: `--bg` for the page, `--bg-light` for the hero, and `--surface` for cards and alternating sections. Text, buttons, and navigation use the existing dark greens. Navigation hover and focus colors remain readable against the dark header.
+The palette pairs forest-green text and navigation with a deeper sage hero, muted sage panels, and warm neutral page backgrounds. All surfaces are solid colors, with normal text contrast of at least 4.5:1 in the primary states. The color tokens are `--bg` for the page, `--bg-light` for the hero, and `--surface` for cards and alternating sections.
 
 Responsive WebP previews in `images/optimized/` replace 5.73 MB of inline originals with at most 408 KB (93% fewer image bytes). The portrait has high loading priority; project images are lazy-loaded with dimensions reserved to avoid layout shifts. Original gallery files remain available through normal links and load when opened in the viewer.
 
-Fonts (Epilogue and Be Vietnam Pro, Latin and Latin Extended), flags, and SVG icons are served locally. Font licenses are included in `fonts/`. Viewer.js 1.11.6 and its MIT license are in `js/vendor/`; its JavaScript and CSS load on the first gallery interaction. The desktop PDF embed loads only near the resume section; mobile visitors use the download link. The liquid simulation loads near visible content on desktop, skips reduced-motion and reduced-data visits, and pauses when hidden or reduced motion is enabled.
+Fonts (Epilogue and Be Vietnam Pro, Latin and Latin Extended), flags, and SVG icons are served locally. Font licenses are included in `fonts/`. Viewer.js 1.11.6 and its MIT license are in `js/vendor/`; its JavaScript and CSS load on the first gallery interaction. The desktop PDF embed loads only near the resume section; mobile visitors use the download link.
+
+The bead animation uses cached Canvas 2D sprites instead of loading Three.js. It keeps the original green/brown colors, 6/8-pixel radii, translucent appearance, and reagent-merging behavior. The physics engine in `js/liquid-flow-physics.mjs` uses a bounded particle pool and neighboring grid cells for collisions. Damped bounces, gentle drift, and recovery to the normal downward speed prevent jitter and lingering upward motion after pointer interactions. A fixed 60 Hz physics step with render interpolation keeps motion consistent on higher-refresh displays.
+
+Only exposed beads within the viewport are drawn. The animation stops when opaque panels cover the entire strip, when the tab is hidden, on mobile layouts, or with reduced-motion/data preferences. Scroll and pointer handlers avoid layout reads; resize work is coalesced. A seeded initial flow avoids waiting for beads to reach lower sections after following deep links. Tests cover collision behavior, pool stability, frame-rate independence, covered/hidden states, resizing, and page-cache restoration.
 
